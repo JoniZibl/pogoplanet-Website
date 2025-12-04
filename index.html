@@ -1,0 +1,1495 @@
+<!DOCTYPE html>
+<html lang="de" class="no-js">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>POGO PLANET</title>
+    <meta name="description" content="POGO PLANET – Promo-Onepager mit Hero, App-Section, Konsolen-Karten, Features, Countdown und Tabs." />
+    <meta name="theme-color" content="#BE3144" />
+    <meta name="color-scheme" content="light dark" />
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <link rel="preload" href="./fonts/Bungee-Regular.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="stylesheet" href="https://unpkg.com/flickity@2/dist/flickity.min.css">
+
+    <!-- JS-Fallback: Inhalte nicht „verstecken“, wenn JS deaktiviert ist -->
+    <script>
+        document.documentElement.classList.replace('no-js', 'js');
+    </script>
+
+    <script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
+
+    <style>
+        /* =========================
+           Brand Tokens & Resets
+        ========================== */
+        @font-face {
+            font-family: 'Bungee';
+            src: url('./fonts/Bungee-Regular.woff2') format('woff2'), url('./fonts/Bungee-Regular.woff') format('woff');
+            font-weight: 400;
+            font-style: normal;
+            font-display: swap;
+        }
+
+        :root {
+            /* Brand */
+            --brand-red: #BE3144;
+            --brand-green: #208A74;
+            --brand-dark: #26283B;
+            --brand-light: #85A6B2;
+            --brand-mid: #769DAC;
+            --brand-blue: #48759C;
+            /* UI */
+            --bg: var(--brand-light);
+            --bg-dark: var(--brand-mid);
+            --ink: #0b1820;
+            --muted: #e6eef2;
+            --accent: var(--brand-green);
+            --accent-2: var(--brand-blue);
+            --accent-3: var(--brand-red);
+            --accent-4: #f59e0b;
+            --card: #eef3f6;
+            --shadow: 0 10px 30px rgba(0,0,0,.15), 0 2px 8px rgba(0,0,0,.08);
+            --radius: 18px;
+            --gutter: clamp(48px,8vw,100px);
+            --gap: clamp(16px,4vw,40px);
+            --blur-max: 16px;
+            --jump-height: -80px;
+            --jump-duration: 1s;
+            color-scheme: light dark;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html, body {
+            height: 100%;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            font: 16px/1.6 system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Arial, "Apple Color Emoji","Segoe UI Emoji";
+            background: var(--bg);
+            color: var(--ink);
+            -webkit-text-size-adjust: 100%;
+            text-rendering: optimizeLegibility;
+        }
+
+        img {
+            max-width: 100%;
+            display: block;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        .container {
+            width: min(1120px, 100% - 2rem);
+            margin-inline: auto;
+            padding-inline: 1rem;
+        }
+
+        :focus-visible {
+            outline: 3px solid var(--accent-2);
+            outline-offset: 2px;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Bungee',system-ui;
+            font-weight: 400;
+            color: #0b1820; /* Standard: dunkel */
+        }
+
+        .h1 {
+            font-size: clamp(2.25rem, 6vw, 6rem);
+            line-height: 1;
+            letter-spacing: .04em;
+            text-transform: uppercase;
+        }
+
+            .h1 small {
+                display: block;
+                font-size: .33em;
+                letter-spacing: .3em;
+                opacity: .95;
+            }
+
+        .h2 {
+            font-size: clamp(1.6rem,3vw,2.4rem);
+            line-height: 1.15;
+            color: #0b1820;
+        }
+
+        .btn, .chip, .tab {
+            touch-action: manipulation;
+            cursor: pointer;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: .55rem;
+            padding: .75rem 1.15rem;
+            border-radius: 999px;
+            font-weight: 800;
+            letter-spacing: .02em;
+            border: 2px solid transparent;
+            box-shadow: var(--shadow);
+            transition: .2s ease background, .2s ease transform, .2s ease box-shadow;
+            will-change: transform;
+        }
+
+        .btn--primary {
+            background: var(--accent);
+            color: #fff;
+        }
+
+            .btn--primary:hover {
+                transform: translateY(-2px);
+                box-shadow: 0 16px 40px rgba(0,0,0,.18);
+                filter: brightness(.98);
+            }
+
+        .btn--secondary {
+            background: #fff;
+            color: var(--brand-dark);
+        }
+
+            .btn--secondary:hover {
+                background: #f6f9fb;
+                transform: translateY(-2px);
+                box-shadow: 0 12px 28px rgba(0,0,0,.14);
+            }
+
+        .btn--ghost {
+            background: transparent;
+            border-color: #fff;
+            color: #fff;
+        }
+
+        .pill {
+            display: inline-flex;
+            gap: .25rem;
+            align-items: center;
+            padding: .35rem .7rem;
+            border-radius: 999px;
+            font-weight: 800;
+            font-size: .85rem;
+        }
+
+        .pill--green {
+            background: color-mix(in srgb, var(--accent) 20%, transparent);
+            color: var(--accent);
+            border: 1px solid color-mix(in srgb, var(--accent) 40%, transparent);
+        }
+
+        /* =========================
+           HERO
+        ========================== */
+        header.hero {
+            position: relative;
+            overflow: hidden;
+            padding: 5rem 0 3.2rem;
+            background: var(--brand-light);
+        }
+
+        .topbar {
+            position: sticky;
+            top: 0;
+            z-index: 60;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            color: #fff;
+            padding: .75rem 0;
+            transition: background-color .2s ease,backdrop-filter .2s ease,box-shadow .2s ease,padding .2s ease;
+            padding-top: max(.75rem, env(safe-area-inset-top));
+        }
+
+            .topbar.is-sticky {
+                backdrop-filter: saturate(140%) blur(10px);
+                background: color-mix(in srgb, var(--brand-dark) 22%, transparent);
+                box-shadow: 0 6px 18px rgba(0,0,0,.14);
+                border-bottom: 1px solid rgba(255,255,255,.14);
+            }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: .7rem;
+            font-weight: 900;
+            color: #fff;
+        }
+
+        .brand-mark {
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            background: var(--accent-2);
+            display: grid;
+            place-items: center;
+            color: #fff;
+            font-weight: 900;
+            box-shadow: 0 6px 14px rgba(0,0,0,.35);
+            overflow: hidden;
+        }
+
+            .brand-mark img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                display: block;
+            }
+
+        .hero-title {
+            text-align: center;
+        }
+
+        .hero-cta {
+            display: flex;
+            gap: .75rem;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin: 1.25rem 0 0;
+        }
+
+        .planet {
+            position: relative;
+            margin: 1.25rem auto 1rem;
+            width: min(620px, 90%);
+            aspect-ratio: 1/0.55;
+        }
+
+            .planet::before {
+                content: "";
+                position: absolute;
+                inset: 0;
+                border-radius: 50% / 28% 28% 72% 72%;
+                opacity: .9;
+                background: radial-gradient(80% 140% at 50% 100%, color-mix(in srgb, var(--brand-dark) 90%, #0000) 0 60%, transparent 61%), radial-gradient(60% 100% at 50% 85%, color-mix(in srgb, var(--brand-dark) 100%, #0000) 0 62%, transparent 63%);
+                filter: drop-shadow(0 20px 30px rgba(0,0,0,.25));
+            }
+
+            .planet.has-img::before {
+                display: none;
+            }
+
+        .planet-img {
+            position: absolute;
+            inset: 0;
+            width: 150%;
+            height: 170%;
+            object-fit: contain;
+            filter: drop-shadow(0 20px 30px rgba(0,0,0,.25));
+            animation: rotatePlanet 120s linear infinite;
+            transform-origin: 50% 50%;
+        }
+
+        @keyframes rotatePlanet {
+            from {
+                transform: rotate(0);
+            }
+
+            to {
+                transform: rotate(-360deg);
+            }
+        }
+
+        .jumper {
+            position: absolute;
+            left: 50%;
+            top: 10%;
+            translate: -50% 0;
+            width: 56px;
+            height: 120px;
+            background: radial-gradient(circle at 50% 18px,var(--brand-dark) 14px, transparent 15px), radial-gradient(8px 12px at 50% 36px,var(--brand-dark) 45%, transparent 46%), linear-gradient(var(--brand-dark) 0 0) center/6px 56px no-repeat;
+            border-radius: 50px;
+        }
+
+        .planet.has-jumper-img .jumper {
+            display: none;
+        }
+
+        @keyframes pogoParabola {
+            0% {
+                transform: translate(-50%, 0);
+            }
+
+            10% {
+                transform: translate(-50%, calc(var(--jump-height) * 0.36));
+            }
+
+            20% {
+                transform: translate(-50%, calc(var(--jump-height) * 0.64));
+            }
+
+            30% {
+                transform: translate(-50%, calc(var(--jump-height) * 0.84));
+            }
+
+            40% {
+                transform: translate(-50%, calc(var(--jump-height) * 0.96));
+            }
+
+            50% {
+                transform: translate(-50%, var(--jump-height));
+            }
+
+            60% {
+                transform: translate(-50%, calc(var(--jump-height) * 0.96));
+            }
+
+            70% {
+                transform: translate(-50%, calc(var(--jump-height) * 0.84));
+            }
+
+            80% {
+                transform: translate(-50%, calc(var(--jump-height) * 0.64));
+            }
+
+            90% {
+                transform: translate(-50%, calc(var(--jump-height) * 0.36));
+            }
+
+            100% {
+                transform: translate(-50%, 0);
+            }
+        }
+
+        .jumper-img {
+            position: absolute;
+            left: 50%;
+            top: -38%;
+            width: clamp(70px,12%,140px);
+            height: auto;
+            object-fit: contain;
+            filter: drop-shadow(0 8px 18px rgba(0,0,0,.35));
+            pointer-events: none;
+            animation: pogoParabola var(--jump-duration) linear infinite;
+            will-change: transform;
+        }
+
+            .planet-img[src=""], .jumper-img[src=""] {
+                display: none;
+            }
+
+        .mist {
+            position: absolute;
+            inset: auto 0 0;
+            height: 160px;
+            background: linear-gradient(var(--brand-mid),color-mix(in srgb, var(--brand-mid) 60%, #0000) 40%, transparent);
+            mix-blend-mode: soft-light;
+        }
+
+        .wave {
+            height: 80px;
+            background: linear-gradient( to bottom, rgba(0,0,0,.08), rgba(0,0,0,0) );
+            mask: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none"><path d="M0,0V27c47,22,103,37,162,39,94,4,158-22,251-32,151-16,309,31,464,22,75-5,129-22,323-56V0Z" fill="white"/></svg>') no-repeat 50% 100%/100% 100%;
+        }
+
+        .wave--flip {
+            transform: rotate(180deg);
+            background: linear-gradient(var(--brand-light), var(--brand-mid));
+        }
+
+        /* =========================
+           Sections
+        ========================== */
+        main {
+            display: block;
+        }
+
+        .section {
+            position: relative;
+            padding: 5rem 0;
+        }
+
+            .section.is-light {
+                background: linear-gradient(var(--brand-mid), var(--brand-light));
+            }
+
+            .section .center {
+                max-width: 1120px;
+                margin-inline: auto;
+                text-align: center;
+            }
+
+        /* Device mock */
+        .device {
+            margin: 2rem auto 0;
+            width: min(880px, 95%);
+            background: #0b0f12;
+            border: 10px solid #222;
+            border-radius: 36px;
+            padding: 1.25rem;
+            box-shadow: var(--shadow);
+        }
+
+        .screen {
+            position: relative;
+            border-radius: 20px;
+            overflow: hidden;
+            background: #000;
+        }
+
+            .screen.has-video::before,
+            .screen.has-video::after {
+                display: none !important;
+            }
+
+        .video-wrapper {
+            position: relative;
+            width: 100%;
+            height: 100%;
+        }
+
+        .video-play-btn {
+            position: absolute;
+            inset: 0;
+            margin: auto;
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            border: none;
+            background: var(--accent);
+            color: #fff;
+            font-size: 2rem;
+            font-weight: bold;
+            display: grid;
+            place-items: center;
+            box-shadow: 0 8px 20px rgba(0,0,0,.25);
+            transition: transform .2s ease, background .2s ease;
+        }
+
+            .video-play-btn:hover {
+                transform: scale(1.05);
+                background: var(--accent-2);
+            }
+
+        /* Cards */
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px,1fr));
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .card {
+            position: relative;
+            overflow: hidden;
+            background: var(--card);
+            border-radius: 16px;
+            box-shadow: var(--shadow);
+            padding: 1rem;
+            border: 3px solid rgba(0,0,0,.08);
+            transform: translateY(var(--lift,0)) rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg));
+            transform-style: preserve-3d;
+            will-change: transform;
+        }
+
+            .card:hover {
+                --lift: -6px;
+                box-shadow: 0 24px 50px rgba(0,0,0,.2);
+            }
+
+            .card::before {
+                content: "";
+                position: absolute;
+                inset: -1px;
+                background: linear-gradient(120deg, rgba(255,255,255,0) 40%, rgba(255,255,255,.35) 50%, rgba(255,255,255,0) 60%);
+                transform: translateX(-120%);
+                transition: transform .6s ease;
+                pointer-events: none;
+            }
+
+            .card:hover::before {
+                transform: translateX(120%);
+            }
+
+            .card .tag {
+                display: inline-block;
+                font-weight: 900;
+                letter-spacing: .04em;
+                font-size: .75rem;
+                padding: .35rem .6rem;
+                border-radius: 999px;
+                color: #fff;
+            }
+
+        .tag.ps {
+            background: color-mix(in srgb, var(--accent-2) 85%, #000);
+        }
+
+        .tag.xbox {
+            background: color-mix(in srgb, var(--accent) 85%, #000);
+        }
+
+        .tag.switch {
+            background: color-mix(in srgb, var(--accent-3) 85%, #000);
+        }
+
+        .card-img {
+            margin-top: 1rem;
+            width: 100%;
+            border-radius: 12px;
+            object-fit: cover;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+        }
+
+        /* Features */
+        .features {
+            position: relative;
+            overflow: hidden;
+        }
+
+            .features .head {
+                background: linear-gradient(180deg,var(--accent) 0%,var(--accent-2) 100%);
+                color: #fff;
+                padding: calc(var(--gutter)*1.0) 0 calc(var(--gutter)*.5);
+                position: relative;
+                z-index: 2;
+                backdrop-filter: blur(4px);
+            }
+
+                .features .head .grid {
+                    display: grid;
+                    grid-template-columns: 1.2fr 1fr;
+                    gap: 2rem;
+                    align-items: start;
+                }
+
+        .chips {
+            display: flex;
+            flex-wrap: wrap;
+            gap: .6rem;
+            margin-top: 1rem;
+        }
+
+        .chip {
+            display: inline-flex;
+            align-items: center;
+            gap: .5rem;
+            padding: .45rem .75rem;
+            border-radius: 999px;
+            font-weight: 800;
+            letter-spacing: .02em;
+            background: rgba(255,255,255,.2);
+            color: #fff;
+            border: 1px solid rgba(255,255,255,.35);
+            backdrop-filter: blur(8px);
+            transition: .3s;
+        }
+
+            .chip:hover {
+                background: rgba(255,255,255,.35);
+            }
+
+            .chip .dot {
+                width: .6rem;
+                height: .6rem;
+                border-radius: 999px;
+                background: #fff;
+                opacity: .9;
+            }
+
+        .scallop {
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: -1px;
+            height: 48px;
+            line-height: 0;
+            display: block;
+            margin: 0;
+            padding: 0;
+            z-index: 2;
+            mask: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none"><path d="M0,20 Q60,0 120,20 T240,20 T360,20 T480,20 T600,20 T720,20 T840,20 T960,20 T1080,20 T1200,20 V120 H0 Z" fill="black"/></svg>') no-repeat 50% 0/100% 100%;
+            pointer-events: none;
+        }
+
+        .band {
+            position: relative;
+            padding: var(--gutter) 0;
+            overflow: hidden;
+        }
+
+        .band--red {
+            background: var(--accent-3);
+        }
+
+        .band--blue {
+            background: color-mix(in srgb, var(--accent-2) 85%, #000);
+        }
+
+        .band--sand {
+            --sand: #E6C067;
+            background: var(--sand);
+        }
+
+        .band .inner {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--gap);
+            align-items: start;
+            position: relative;
+            z-index: 2;
+        }
+
+        .shot {
+            background: rgba(255,255,255,.75);
+            border: 3px solid rgba(0,0,0,.35);
+            border-radius: 14px;
+            box-shadow: 0 18px 30px rgba(0,0,0,.25);
+            backdrop-filter: blur(4px);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-copy {
+            color: #fff;
+            backdrop-filter: blur(4px);
+        }
+
+            .feature-copy p {
+                max-width: 46ch;
+                opacity: .92;
+            }
+
+        /* Headlines in den Feature-Bändern weiß */
+        .features .head h2,
+        .band .feature-copy h3 {
+            color: #ffffff;
+        }
+
+        .band .icons {
+            display: flex;
+            gap: .6rem;
+            align-items: flex-end;
+            margin-top: 1rem;
+        }
+
+        .icon-box {
+            width: 56px;
+            height: 56px;
+            border-radius: 12px;
+            display: grid;
+            place-items: center;
+            color: #fff;
+            font-size: 1.4rem;
+            box-shadow: var(--shadow);
+            backdrop-filter: blur(6px);
+            transition: transform .2s ease, box-shadow .2s ease;
+        }
+
+        .icon-box--y {
+            background: #F0C419;
+        }
+
+        .icon-box--b {
+            background: #394a9e;
+        }
+
+        .icon-box--r {
+            background: #E74C3C;
+        }
+
+        .icon-box:hover {
+            transform: translateY(-3px) rotate(-2deg);
+            box-shadow: 0 16px 30px rgba(0,0,0,.22);
+        }
+
+        .hats-strip {
+            display: flex;
+            flex-wrap: wrap;
+            gap: .8rem;
+            justify-content: center;
+            padding: .8rem 0 0;
+        }
+
+        .hat-pill {
+            height: 44px;
+            padding: .4rem .8rem;
+            border-radius: 12px;
+            background: rgba(255,255,255,.55);
+            border: 2px solid rgba(0,0,0,.25);
+            backdrop-filter: blur(4px);
+            transition: transform .2s ease, box-shadow .2s ease;
+        }
+
+            .hat-pill:hover {
+                transform: translateY(-3px);
+                box-shadow: 0 12px 24px rgba(0,0,0,.18);
+            }
+
+        .features .head + .band,
+        .band + .band {
+            margin-top: -1px;
+        }
+
+        /* Dark Section + Tabs */
+        .dark {
+            background: linear-gradient(#20323b,#15242b);
+            color: #dfeaf0;
+        }
+
+            .dark .card {
+                background: #0f1b22;
+                color: #cfe0e7;
+                border-color: #0b1419;
+            }
+
+        .tabs {
+            display: flex;
+            gap: .5rem;
+            margin: 1rem 0;
+            flex-wrap: wrap;
+        }
+
+        .tab {
+            padding: .45rem .9rem;
+            border-radius: 999px;
+            background: var(--brand-dark);
+            color: #b7ced7;
+            border: 2px solid #0b1419;
+            font-weight: 900;
+            letter-spacing: .06em;
+            transition: .2s ease;
+            box-shadow: var(--shadow);
+        }
+
+            .tab.is-active {
+                background: var(--accent-2);
+                color: #06202b;
+                border-color: transparent;
+            }
+
+        /* Footer */
+        .footer-wave {
+            height: 120px;
+            background: linear-gradient( to top, rgba(0,0,0,.2), rgba(0,0,0,0) );
+            mask: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none"><path d="M1200 0v60c-180 40-300 50-420 44C605 90 520 44 360 54 220 64 120 100 0 120V0Z" fill="white"/></svg>') no-repeat 50% 100%/100% 100%;
+        }
+
+        /* Reveal / Parallax */
+        .reveal {
+            opacity: .12;
+            transform: translateY(22px);
+            filter: blur(3px);
+            transition: opacity .45s ease, transform .45s ease, filter .45s ease;
+        }
+
+            .reveal.is-in {
+                opacity: 1;
+                transform: translateY(0);
+                filter: blur(0);
+            }
+
+        .no-js .reveal {
+            opacity: 1;
+            transform: none;
+            filter: none;
+        }
+
+        .blur-scroll {
+            filter: blur(var(--blur,0px));
+        }
+
+        .parallax {
+            transform: translateY(calc(var(--py,0) * 1px)) rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg));
+            transform-style: preserve-3d;
+            will-change: transform;
+        }
+
+        /* Micro interactions */
+        .btn, .chip, .tab {
+            --mx: 0px;
+            --my: 0px;
+            transform: translate3d(var(--mx),var(--my),0);
+        }
+
+            .tab:hover {
+                --my: -2px;
+            }
+
+        .shot::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(600px 200px at -10% -20%, rgba(255,255,255,.35), rgba(255,255,255,0) 40%);
+            transform: translateX(-60%);
+            transition: transform .8s ease;
+            pointer-events: none;
+        }
+
+        .shot:hover::after {
+            transform: translateX(140%);
+        }
+
+        .scrollbar {
+            position: fixed;
+            left: 0;
+            top: 0;
+            height: 3px;
+            width: 0;
+            z-index: 60;
+            background: linear-gradient(90deg,var(--accent),var(--accent-3));
+        }
+
+        /* Flickity Slider Styles */
+        .gallery {
+            margin-top: 2.5rem;
+        }
+
+            .gallery.js-flickity {
+                background: transparent;
+            }
+
+        .gallery-cell {
+            width: min(80%, 880px);
+            margin-right: 16px;
+            border-radius: 24px;
+            overflow: hidden;
+            background: #f4f7fa;
+            box-shadow: var(--shadow);
+        }
+
+            .gallery-cell img {
+                display: block;
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            }
+
+        .flickity-button {
+            background: rgba(0,0,0,.55);
+        }
+
+            .flickity-button:hover {
+                background: rgba(0,0,0,.8);
+            }
+
+        .flickity-button-icon {
+            fill: #fff;
+        }
+
+        .flickity-page-dots .dot {
+            background: color-mix(in srgb, var(--accent-2) 80%, #ffffff);
+            opacity: .55;
+        }
+
+            .flickity-page-dots .dot.is-selected {
+                opacity: 1;
+                transform: scale(1.1);
+            }
+
+        /* Responsive tweaks */
+        @media (max-width:960px) {
+            .features .head .grid {
+                grid-template-columns: 1fr;
+            }
+
+            .band .inner {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Motion & pointer prefs */
+        @media (prefers-reduced-motion:reduce) {
+            .reveal {
+                opacity: 1;
+                transform: none;
+                filter: none;
+            }
+
+            .blur-scroll {
+                filter: none;
+            }
+
+            .parallax {
+                transform: none;
+            }
+
+            .planet-img, .jumper-img {
+                animation: none;
+            }
+
+            .card, .shot {
+                transition: none;
+            }
+        }
+
+        @media (pointer:coarse) {
+            .band::before {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ===== HERO ===== -->
+    <header class="hero">
+        <div class="container topbar" role="navigation" aria-label="Hauptnavigation">
+            <a class="brand" href="index.html">
+                <span class="brand-mark" aria-hidden="true">
+                    <img src="logo-pp.png" alt="">
+                </span>
+                <span>POGO PLANET</span>
+            </a>
+            <nav style="display:flex; gap:.6rem">
+                <a class="btn btn--ghost" href="#app">Get App</a>
+                <a class="btn btn--secondary" href="#features">Features</a>
+            </nav>
+        </div>
+
+        <div class="container hero-title" aria-labelledby="title">
+            <h1 id="title" class="h1"><strong>POGO </strong><small>PLANET</small></h1>
+            <p>&nbsp;</p>
+            <p>&nbsp;</p>
+            <p>&nbsp;</p>
+            <p>&nbsp;</p>
+        </div>
+
+        <div class="planet" aria-hidden="true">
+            <img class="planet-img" alt="" src="Weltkugel.png" fetchpriority="high" />
+            <img class="jumper-img" alt="" src="PogoMann.png" />
+            <div class="jumper"></div>
+        </div>
+
+        <div class="container" style="text-align:center">
+            <div class="hero-cta">
+                <span class="pill pill--green" aria-label="Neu">Neu</span>
+                <a class="btn btn--secondary" href="#app">iOS &amp; Android testen</a>
+                <a class="btn btn--primary" href="#features">Mehr erfahren</a>
+            </div>
+        </div>
+    </header>
+
+    <div class="wave wave--flip" aria-hidden="true"></div>
+
+    <main id="main">
+
+        <!-- ===== TRY THE APP ===== -->
+        <section id="app" class="section is-light" aria-labelledby="app-title">
+            <div class="container center">
+                <h2 id="app-title" class="h2">Teste die App</h2>
+                <p class="lead">Spring dich durch verrückte Welten – präzise Physik, knackige Level, stylische Hats.</p>
+
+                <div class="device">
+                    <div class="screen has-video">
+                        <div class="video-wrapper">
+                            <video id="demoVideo" preload="metadata" playsinline webkit-playsinline style="width:100%; height:100%; object-fit:cover; border-radius:inherit">
+                                <source src="demo.mp4" type="video/mp4">
+                                Dein Browser unterstützt das Video-Tag nicht.
+                            </video>
+                            <button class="video-play-btn" id="playBtn" aria-label="Video abspielen" aria-pressed="false">▶</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="hero-cta" style="margin-top:1.2rem">
+                    <a class="btn btn--secondary" href="#" rel="noopener">App&nbsp;Store</a>
+                    <a class="btn btn--secondary" href="#" rel="noopener">Google&nbsp;Play</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== HAVE FUN + SLIDER ===== -->
+        <section class="section is-light" aria-labelledby="fun-title">
+            <div class="container center">
+                <h2 id="fun-title" class="h2">Have Fun</h2>
+                <p class="lead">
+                    Springe, rolle, stoße – aber lande! Perfekt getimte Sprünge und clevere Routen sind der Schlüssel.
+                </p>
+
+                <div class="gallery js-flickity"
+                     data-flickity='{
+               "wrapAround": true,
+               "imagesLoaded": true,
+               "pageDots": true,
+               "prevNextButtons": true
+             }'>
+
+                    <div class="gallery-cell">
+                        <img src="Websiteimg1.png" alt="POGO PLANET – Gameplay Szene 1">
+                    </div>
+                    <div class="gallery-cell">
+                        <img src="Websiteimg2.png" alt="POGO PLANET – Gameplay Szene 2">
+                    </div>
+                    <div class="gallery-cell">
+                        <img src="Websiteimg3.png" alt="POGO PLANET – Gameplay Szene 3">
+                    </div>
+                    <div class="gallery-cell">
+                        <img src="Websiteimg4.png" alt="POGO PLANET – Gameplay Szene 4">
+                    </div>
+                    <div class="gallery-cell">
+                        <img src="Websiteimg5.png" alt="POGO PLANET – Gameplay Szene 5">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== CONSOLES ===== -->
+        <section class="section" aria-labelledby="console-title">
+            <div class="container center">
+                <h2 id="console-title" class="h2">Kommt bald auf Konsolen ↓</h2>
+                <div class="cards">
+                    <article class="card">
+                        <span class="tag ps">PlayStation 4/5</span>
+                        <h3>Duales Feedback</h3>
+                        <small>Adaptive Trigger &amp; feines Rumble für perfekte Sprung-Timings.</small>
+                        <img src="ps.png" alt="PlayStation Controller" class="card-img" loading="lazy" decoding="async">
+                    </article>
+
+                    <article class="card">
+                        <span class="tag xbox">Xbox One / Series</span>
+                        <h3>Smart Delivery</h3>
+                        <small>Optimiert für 120 FPS und superfeines Input-Latency-Tuning.</small>
+                        <img src="xbox.png" alt="Xbox Controller" class="card-img" loading="lazy" decoding="async">
+                    </article>
+
+                    <article class="card">
+                        <span class="tag switch">Switch 1+2</span>
+                        <h3>On-the-Go</h3>
+                        <small>Handheld-Spaß mit präzisem Gyro-Aiming und lokaler Koop-Action.</small>
+                        <img src="switch.png" alt="Nintendo Switch" class="card-img" loading="lazy" decoding="async">
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== NEW CONSOLE FEATURES ===== -->
+        <section id="features" class="features" aria-labelledby="features-title">
+            <div class="head">
+                <div class="container">
+                    <div class="grid">
+                        <div>
+                            <h2 id="features-title" class="h2">New Console<br>Features</h2>
+                        </div>
+                        <div>
+                            <p style="opacity:.92">
+                                Die Konsolen-Edition von <strong>POGO PLANET</strong> bringt zahlreiche neue Features –
+                                für noch mehr Flow, Chaos und Koop-Spaß.
+                            </p>
+                            <div class="chips" role="list">
+                                <span class="chip" role="listitem"><span class="dot"></span> 4 Player Coop</span>
+                                <span class="chip" role="listitem"><span class="dot"></span> 50 Fight Maps</span>
+                                <span class="chip" role="listitem"><span class="dot"></span> 200 Hats</span>
+                                <span class="chip" role="listitem"><span class="dot"></span> New Soundtracks</span>
+                                <span class="chip" role="listitem"><span class="dot"></span> Emoticons</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="scallop" style="background:var(--accent-3)"></div>
+            </div>
+
+            <div class="band band--red">
+                <div class="container inner">
+                    <div class="shot reveal blur-scroll parallax">
+                        <img src="featuresimg1.png" alt="Gameplay Screenshot – Coop" style="width:100%; height:100%; object-fit:cover; border-radius:inherit;" loading="lazy" decoding="async">
+                    </div>
+                    <div class="feature-copy reveal blur-scroll">
+                        <h3>4 Player Coop</h3>
+                        <p><strong>Im Team zu viert</strong> durch bunte, unberechenbare Welten. Lokal auf dem Sofa – mehr Chaos, mehr Lacher, mehr Highlights.</p>
+                    </div>
+                </div>
+                <div class="scallop" style="background:color-mix(in srgb, var(--accent-2) 85%, #000)"></div>
+            </div>
+
+            <div class="band band--blue">
+                <div class="container inner">
+                    <div class="feature-copy reveal blur-scroll">
+                        <h3>New Fight Mode</h3>
+                        <p>50 neue Arenen – jede mit eigenen Hazards, Layouts und Themes. Von Vulkan-Kesseln bis Neon-Dächern: andere Taktik, anderer Flow.</p>
+                        <div class="icons" aria-hidden="true">
+                            <div class="icon-box icon-box--y">😃</div>
+                            <div class="icon-box icon-box--b">👀</div>
+                            <div class="icon-box icon-box--r">😡</div>
+                        </div>
+                    </div>
+                    <div class="shot reveal blur-scroll parallax">
+                        <img src="featuresimg2.png" alt="Gameplay Screenshot – Fight Mode" style="width:100%; height:100%; object-fit:cover; border-radius:inherit;" loading="lazy" decoding="async">
+                    </div>
+                </div>
+                <div class="scallop" style="background:#E6C067"></div>
+            </div>
+
+            <div class="band band--sand">
+                <div class="container inner">
+                    <div class="shot reveal blur-scroll parallax">
+                        <img src="featuresimg3.png" alt="Gameplay Screenshot – Hats" style="width:100%; height:100%; object-fit:cover; border-radius:inherit;" loading="lazy" decoding="async">
+                    </div>
+                    <div class="feature-copy reveal blur-scroll">
+                        <h3>200 new Hats</h3>
+                        <p>Style dich mit über 200 witzigen bis wilden Hüten. Verdienen, freischalten, angeben – du entscheidest.</p>
+                        <div class="hats-strip" aria-hidden="true">
+                            <div class="hat-pill"></div>
+                            <div class="hat-pill"></div>
+                            <div class="hat-pill"></div>
+                            <div class="hat-pill"></div>
+                            <div class="hat-pill"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== COUNTDOWN ===== -->
+        <section class="belt" style="background:#c6892a;color:#fff;padding:4rem 0" aria-labelledby="countdown-title">
+            <div class="container center">
+                <h2 id="countdown-title" class="h2" style="color:#fff">Release Countdown</h2>
+                <div class="countdown" role="timer" aria-live="polite" style="display:flex;justify-content:center;gap:.6rem;margin-top:1.3rem">
+                    <div class="tick" style="background:var(--brand-dark);color:#e6f0f4;padding:.7rem .7rem;border-radius:12px;min-width:70px;box-shadow:var(--shadow);text-align:center">
+                        <strong id="d">00</strong>
+                        <span style="display:block;opacity:.8;font-size:.78rem">Tage</span>
+                    </div>
+                    <div class="tick" style="background:var(--brand-dark);color:#e6f0f4;padding:.7rem .7rem;border-radius:12px;min-width:70px;box-shadow:var(--shadow);text-align:center">
+                        <strong id="h">00</strong>
+                        <span style="display:block;opacity:.8;font-size:.78rem">Std</span>
+                    </div>
+                    <div class="tick" style="background:var(--brand-dark);color:#e6f0f4;padding:.7rem .7rem;border-radius:12px;min-width:70px;box-shadow:var(--shadow);text-align:center">
+                        <strong id="m">00</strong>
+                        <span style="display:block;opacity:.8;font-size:.78rem">Min</span>
+                    </div>
+                    <div class="tick" style="background:var(--brand-dark);color:#e6f0f4;padding:.7rem .7rem;border-radius:12px;min-width:70px;box-shadow:var(--shadow);text-align:center">
+                        <strong id="s">00</strong>
+                        <span style="display:block;opacity:.8;font-size:.78rem">Sek</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== DARK CARDS + TABS ===== -->
+        <section class="section dark" aria-labelledby="worlds-title">
+            <div class="container">
+                <h2 id="worlds-title" class="sr-only">Welten &amp; Schwierigkeitsgrade</h2>
+
+                <div class="cards" style="grid-template-columns:1fr; gap:1.2rem">
+                    <article class="card" style="padding:1.4rem">
+                        <h3 class="h2" style="font-size:1.4rem; color:#e7f3f8">Entdecke die Welten von POGO PLANET</h3>
+                        <p>Von Serpent&nbsp;Caves bis Sky&nbsp;Harbor – jede Zone mit neuen Physik-Twists &amp; Herausforderungen. Finde Abkürzungen, sammle Fragmente und style deinen Pogo-Stick.</p>
+                    </article>
+                </div>
+
+                <div class="tabs" id="tabs" role="tablist" aria-label="Schwierigkeitsgrade">
+                    <button class="tab is-active" role="tab" aria-selected="true" aria-controls="tab-easy" id="tab-easy-btn" data-tab="easy" tabindex="0">EASY</button>
+                    <button class="tab" role="tab" aria-selected="false" aria-controls="tab-normal" id="tab-normal-btn" data-tab="normal" tabindex="-1">NORMAL</button>
+                    <button class="tab" role="tab" aria-selected="false" aria-controls="tab-hard" id="tab-hard-btn" data-tab="hard" tabindex="-1">HARD</button>
+                    <button class="tab" role="tab" aria-selected="false" aria-controls="tab-insane" id="tab-insane-btn" data-tab="insane" tabindex="-1">INSANE</button>
+                </div>
+
+                <div class="cards" style="grid-template-columns:1fr; gap:1.2rem">
+                    <article class="card" id="tab-easy">
+                        <h3 class="h2" style="font-size:1.3rem; color:#d7ebf2">Designed for All Skill Levels</h3>
+                        <ul>
+                            <li>Sanfter Einstieg – Checkpoints, Tutorials, forgiving Physics.</li>
+                            <li>Klare Lernkurve: Präzision, Momentum, Timing.</li>
+                            <li>Ghost-Runs &amp; Replays helfen beim Verbessern.</li>
+                        </ul>
+                    </article>
+                    <article class="card" id="tab-normal" hidden>
+                        <h3 class="h2" style="font-size:1.3rem; color:#d7ebf2">Normal</h3>
+                        <p>Strengere Zeiten, weniger Checkpoints, neue Routen – perfekt für Speedrunner.</p>
+                    </article>
+                    <article class="card" id="tab-hard" hidden>
+                        <h3 class="h2" style="font-size:1.3rem; color:#d7ebf2">Hard</h3>
+                        <p>Komplexe Ketten, präzise Inputs, kaum Fehler erlaubt – aber maximaler Flow.</p>
+                    </article>
+                    <article class="card" id="tab-insane" hidden>
+                        <h3 class="h2" style="font-size:1.3rem; color:#d7ebf2">Insane</h3>
+                        <p>Für die Besten der Besten – perfekt für Wettbewerbe und Ranglisten.</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <div class="footer-wave" aria-hidden="true"></div>
+
+    <footer class="section" style="padding-top:0">
+        <div class="container" style="text-align:center; opacity:.85">
+            <small>© <span id="year"></span> POGO PLANET – Demo-Landingpage. Grafiken/Logos als Platzhalter.</small>
+            <div style="margin-top:.5rem; font-size:.85rem">
+                <a href="label.html">Impressum &amp; Datenschutz</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const $ = (sel, root = document) => root.querySelector(sel);
+        const $$ = (sel, root = document) => Array.from(root.querySelectorAll(sel));
+        const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        const isCoarse = window.matchMedia('(pointer: coarse)').matches;
+
+        // Countdown (Release: +1 Monat)
+        (function () {
+            const release = new Date();
+            release.setMonth(release.getMonth() + 1);
+
+            const elD = $('#d'), elH = $('#h'), elM = $('#m'), elS = $('#s');
+            function tick() {
+                const now = new Date();
+                let diff = Math.max(0, release - now);
+                const d = Math.floor(diff / 86400000); diff -= d * 86400000;
+                const h = Math.floor(diff / 3600000); diff -= h * 3600000;
+                const m = Math.floor(diff / 60000); diff -= m * 60000;
+                const s = Math.floor(diff / 1000);
+                elD.textContent = String(d).padStart(2, '0');
+                elH.textContent = String(h).padStart(2, '0');
+                elM.textContent = String(m).padStart(2, '0');
+                elS.textContent = String(s).padStart(2, '0');
+            }
+            tick();
+            setInterval(tick, 1000);
+        })();
+
+        // Planet assets
+        (function () {
+            const planet = $('.planet'); if (!planet) return;
+            const pimg = planet.querySelector('.planet-img');
+            const jimg = planet.querySelector('.jumper-img');
+            const hasSrc = img => img && img.getAttribute('src') && img.getAttribute('src').trim() !== '';
+            if (hasSrc(pimg)) planet.classList.add('has-img');
+            if (hasSrc(jimg)) planet.classList.add('has-jumper-img');
+        })();
+
+        // Tabs
+        (function () {
+            const tabs = $$('#tabs [role="tab"]');
+            const panels = tabs.map(b => document.getElementById('tab-' + b.dataset.tab));
+            if (!tabs.length) return;
+
+            function activate(btn) {
+                tabs.forEach((b, i) => {
+                    const active = (b === btn);
+                    b.classList.toggle('is-active', active);
+                    b.setAttribute('aria-selected', active ? 'true' : 'false');
+                    b.setAttribute('tabindex', active ? '0' : '-1');
+                    if (panels[i]) panels[i].hidden = !active;
+                });
+                if (btn) btn.focus({ preventScroll: true });
+            }
+
+            tabs.forEach((t, idx) => {
+                t.addEventListener('click', () => activate(t));
+                t.addEventListener('keydown', (e) => {
+                    const i = tabs.indexOf ? tabs.indexOf(document.activeElement) : idx;
+                    let next = null;
+                    if (e.key === 'ArrowRight') { e.preventDefault(); next = tabs[(i + 1) % tabs.length]; }
+                    if (e.key === 'ArrowLeft') { e.preventDefault(); next = tabs[(i - 1 + tabs.length) % tabs.length]; }
+                    if (e.key === 'Home') { e.preventDefault(); next = tabs[0]; }
+                    if (e.key === 'End') { e.preventDefault(); next = tabs[tabs.length - 1]; }
+                    if (next) activate(next);
+                });
+            });
+
+            const initial = tabs.find(b => b.classList.contains('is-active')) || tabs[0];
+            activate(initial);
+        })();
+
+        // Scroll FX
+        (function () {
+            const $reveal = $$('.reveal');
+            if ('IntersectionObserver' in window) {
+                const io = new IntersectionObserver((entries) => {
+                    entries.forEach(e => {
+                        if (e.isIntersecting) {
+                            e.target.classList.add('is-in');
+                            io.unobserve(e.target);
+                        }
+                    });
+                }, { rootMargin: '0px 0px -10% 0px', threshold: .15 });
+                $reveal.forEach(el => io.observe(el));
+            } else {
+                $reveal.forEach(el => el.classList.add('is-in'));
+            }
+
+            if (prefersReduced) return;
+
+            const bands = $$('.band');
+            let ticking = false;
+            function onScroll() {
+                if (ticking) return;
+                ticking = true;
+                requestAnimationFrame(() => {
+                    const vh = window.innerHeight;
+                    bands.forEach(b => {
+                        const r = b.getBoundingClientRect();
+                        const center = r.top + r.height / 2;
+                        const dist = Math.abs(center - vh / 2);
+                        const norm = Math.min(1, dist / (vh * 0.6));
+                        const blur = (1 - norm) * parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--blur-max'));
+                        b.querySelectorAll('.blur-scroll').forEach(el => {
+                            el.style.setProperty('--blur', blur.toFixed(2) + 'px');
+                        });
+                        const py = (center - vh / 2) * 0.08;
+                        b.querySelectorAll('.parallax').forEach(el => {
+                            el.style.setProperty('--py', (-py).toFixed(2));
+                        });
+                    });
+                    ticking = false;
+                });
+            }
+            window.addEventListener('scroll', onScroll, { passive: true });
+            window.addEventListener('resize', onScroll);
+            onScroll();
+        })();
+
+        // Hover Tilt
+        (function () {
+            if (prefersReduced || isCoarse) return;
+            const els = $$('.card, .shot');
+            const MAX = 8;
+            els.forEach(el => {
+                el.addEventListener('pointermove', (e) => {
+                    const r = el.getBoundingClientRect();
+                    const cx = r.left + r.width / 2;
+                    const cy = r.top + r.height / 2;
+                    const dx = (e.clientX - cx) / (r.width / 2);
+                    const dy = (e.clientY - cy) / (r.height / 2);
+                    el.style.setProperty('--ry', (dx * -MAX).toFixed(2) + 'deg');
+                    el.style.setProperty('--rx', (dy * MAX).toFixed(2) + 'deg');
+                });
+                el.addEventListener('pointerleave', () => {
+                    el.style.setProperty('--ry', '0deg');
+                    el.style.setProperty('--rx', '0deg');
+                });
+            });
+        })();
+
+        // Sticky topbar
+        (function () {
+            const topbar = $('.hero .topbar');
+            if (!topbar) return;
+            const onScroll = () => {
+                topbar.classList.toggle('is-sticky', window.scrollY > 10);
+            };
+            addEventListener('scroll', onScroll, { passive: true });
+            addEventListener('resize', onScroll);
+            onScroll();
+        })();
+
+        // Scroll progress bar
+        (function () {
+            const bar = document.createElement('div');
+            bar.className = 'scrollbar';
+            document.body.append(bar);
+            const onScroll = () => {
+                const max = document.documentElement.scrollHeight - window.innerHeight;
+                bar.style.width = (100 * window.scrollY / Math.max(1, max)) + '%';
+            };
+            addEventListener('scroll', onScroll, { passive: true });
+            addEventListener('resize', onScroll);
+            onScroll();
+        })();
+
+        // Magnetic hover
+        (function () {
+            if (prefersReduced || isCoarse) return;
+            const MAX = 4;
+            $$('.btn, .chip, .tab').forEach(el => {
+                el.addEventListener('pointermove', (e) => {
+                    const r = el.getBoundingClientRect();
+                    const x = ((e.clientX - (r.left + r.width / 2)) / r.width) * MAX;
+                    const y = ((e.clientY - (r.top + r.height / 2)) / r.height) * MAX;
+                    el.style.setProperty('--mx', x.toFixed(2) + 'px');
+                    el.style.setProperty('--my', y.toFixed(2) + 'px');
+                });
+                el.addEventListener('pointerleave', () => {
+                    el.style.setProperty('--mx', '0px');
+                    el.style.setProperty('--my', '0px');
+                });
+            });
+        })();
+
+        // Hero pointer parallax
+        (function () {
+            if (prefersReduced || isCoarse) return;
+            const hero = $('.hero'); if (!hero) return;
+            const planet = hero.querySelector('.planet');
+            const jumper = hero.querySelector('.jumper');
+            hero.addEventListener('pointermove', (e) => {
+                const r = hero.getBoundingClientRect();
+                const dx = (e.clientX - (r.left + r.width / 2)) / r.width;
+                const dy = (e.clientY - (r.top + r.height / 2)) / r.height;
+                if (planet) planet.style.transform = `translate(${(dx * 8).toFixed(2)}px, ${(dy * 6).toFixed(2)}px)`;
+                if (jumper) jumper.style.transform = `translate(calc(-50% + ${(dx * 10).toFixed(2)}px), ${(dy * 8).toFixed(2)}px)`;
+            });
+            hero.addEventListener('pointerleave', () => {
+                if (planet) planet.style.transform = '';
+                if (jumper) jumper.style.transform = '';
+            });
+        })();
+
+        // Spotlight in Features
+        (function () {
+            if (isCoarse) return;
+            const features = $('.features'); if (!features) return;
+            features.addEventListener('pointermove', (e) => {
+                const r = features.getBoundingClientRect();
+                features.style.setProperty('--sx', (e.clientX - r.left) + 'px');
+                features.style.setProperty('--sy', (e.clientY - r.top) + 'px');
+            });
+            features.addEventListener('pointerleave', () => {
+                features.style.setProperty('--sx', '50%');
+                features.style.setProperty('--sy', '50%');
+            });
+        })();
+
+        // Hats marquee
+        (function () {
+            const strip = document.querySelector('.hats-strip');
+            if (!strip || prefersReduced) return;
+            const baseCount = strip.children.length;
+            if (!baseCount) return;
+            const parentW = strip.parentElement ? strip.parentElement.clientWidth : 0;
+            let i = 0;
+            while (strip.scrollWidth < parentW * 2 && i < baseCount * 3) {
+                strip.appendChild(strip.children[i % baseCount].cloneNode(true));
+                i++;
+            }
+        })();
+
+        // Footer Jahr
+        (function () {
+            const year = document.getElementById('year');
+            if (year) year.textContent = new Date().getFullYear();
+        })();
+
+        // Video Play Overlay
+        (function () {
+            const btn = document.getElementById('playBtn');
+            const video = document.getElementById('demoVideo');
+            if (!btn || !video) return;
+
+            function play() {
+                video.play();
+                btn.style.display = 'none';
+                btn.setAttribute('aria-pressed', 'true');
+            }
+
+            btn.addEventListener('click', play);
+            btn.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    play();
+                }
+            });
+
+            video.addEventListener('ended', () => {
+                btn.style.display = 'grid';
+                btn.setAttribute('aria-pressed', 'false');
+            });
+        })();
+    </script>
+</body>
+</html>
