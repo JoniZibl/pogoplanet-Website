@@ -160,6 +160,8 @@
                 will-change: transform;
                 white-space: nowrap;
             }
+		
+		
 
             .btn--primary {
                 background: var(--accent);
@@ -718,7 +720,12 @@
             }
 
             .band--sand {
-                --sand: #E6C067;
+                --sand: #288164;
+                background: var(--sand);
+            }
+		
+		.band--yel {
+                --sand: #c6892a;
                 background: var(--sand);
             }
 
@@ -823,7 +830,7 @@
 
             /* Countdown belt */
             .belt {
-                background: #c6892a;
+                background: #0f1b22;
                 color: #fff;
                 padding: clamp(3rem, 6vw, 4rem) 0;
             }
@@ -1247,6 +1254,22 @@
                     </div>
                 </div>
             </div>
+			
+			<div class="band band--yel">
+                <div class="container inner">
+                    <div class="feature-copy reveal blur-scroll">
+                        <h3>New Fight Mode</h3>
+                        <p>50 neue Arenen – jede mit eigenen Hazards, Layouts und Themes. Von Vulkan-Kesseln bis Neon-Dächern: andere Taktik, anderer Flow.</p>
+                    </div>
+                    <div class="shot reveal blur-scroll parallax">
+                        <img src="featuresimg4.png" alt="Gameplay Screenshot – Fight Mode"
+                             style="width:100%; height:100%; object-fit:cover; border-radius:inherit;" loading="lazy" decoding="async">
+                    </div>
+                </div>
+            </div>
+
+			
+			
         </section>
 
         <!-- ===== COUNTDOWN ===== -->
@@ -1506,24 +1529,35 @@
             onScroll();
         })();
 
-        // Magnetic hover
-        (function () {
-            if (prefersReduced || isCoarse) return;
-            const MAX = 4;
-            $$('.btn, .chip, .tab').forEach(el => {
-                el.addEventListener('pointermove', (e) => {
-                    const r = el.getBoundingClientRect();
-                    const x = ((e.clientX - (r.left + r.width / 2)) / r.width) * MAX;
-                    const y = ((e.clientY - (r.top + r.height / 2)) / r.height) * MAX;
-                    el.style.setProperty('--mx', x.toFixed(2) + 'px');
-                    el.style.setProperty('--my', y.toFixed(2) + 'px');
-                });
-                el.addEventListener('pointerleave', () => {
-                    el.style.setProperty('--mx', '0px');
-                    el.style.setProperty('--my', '0px');
-                });
-            });
-        })();
+        // Magnetic hover + spotlight follow
+(function () {
+  if (prefersReduced || isCoarse) return;
+  const MAX = 4;
+  $$('.btn, .chip, .tab').forEach(el => {
+    el.addEventListener('pointermove', (e) => {
+      const r = el.getBoundingClientRect();
+
+      // existing magnetic offset
+      const x = ((e.clientX - (r.left + r.width / 2)) / r.width) * MAX;
+      const y = ((e.clientY - (r.top + r.height / 2)) / r.height) * MAX;
+      el.style.setProperty('--mx', x.toFixed(2) + 'px');
+      el.style.setProperty('--my', y.toFixed(2) + 'px');
+
+      // NEW: spotlight position in %
+      const px = ((e.clientX - r.left) / r.width) * 100;
+      const py = ((e.clientY - r.top) / r.height) * 100;
+      el.style.setProperty('--px', px.toFixed(1) + '%');
+      el.style.setProperty('--py', py.toFixed(1) + '%');
+    });
+
+    el.addEventListener('pointerleave', () => {
+      el.style.setProperty('--mx', '0px');
+      el.style.setProperty('--my', '0px');
+      el.style.setProperty('--px', '50%');
+      el.style.setProperty('--py', '50%');
+    });
+  });
+})();
 
         // Hero pointer parallax
         (function () {
