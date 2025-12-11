@@ -454,6 +454,148 @@
       transform: scale(1.05);
       background: var(--accent-2);
     }
+	  
+	  /* =========================
+   Custom Media Player
+========================== */
+
+.media-player {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: block;
+  background: #000;
+}
+
+.media-player video {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+}
+
+/* Steuerleiste */
+.media-controls {
+  position: absolute;
+  inset-inline: 0;
+  bottom: 0;
+  padding: .5rem .75rem;
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  background: linear-gradient(to top, rgba(0,0,0,.75), rgba(0,0,0,0));
+  color: #fff;
+  font-size: .85rem;
+  pointer-events: auto;
+}
+
+.media-btn {
+  border: none;
+  background: rgba(0,0,0,.35);
+  color: inherit;
+  width: 32px;
+  height: 32px;
+  border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  flex: 0 0 auto;
+  box-shadow: 0 3px 8px rgba(0,0,0,.4);
+  transition: background .15s ease, transform .15s ease, box-shadow .15s ease;
+}
+
+.media-btn:hover {
+  background: rgba(255,255,255,.12);
+  transform: translateY(-1px);
+  box-shadow: 0 5px 12px rgba(0,0,0,.5);
+}
+
+.media-btn:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 6px rgba(0,0,0,.5);
+}
+
+.media-time {
+  display: flex;
+  align-items: center;
+  gap: .2rem;
+  min-width: 90px;
+  font-variant-numeric: tabular-nums;
+  flex: 0 0 auto;
+}
+
+.media-time-sep {
+  opacity: .6;
+}
+
+/* Timeline */
+.media-seek {
+  flex: 1 1 auto;
+  appearance: none;
+  height: 6px;
+  border-radius: 999px;
+  background: rgba(255,255,255,.25);
+  cursor: pointer;
+  margin-inline: .25rem;
+}
+
+/* Range Track */
+.media-seek::-webkit-slider-runnable-track,
+.media-volume::-webkit-slider-runnable-track {
+  height: 6px;
+  border-radius: 999px;
+  background: rgba(255,255,255,.25);
+}
+.media-seek::-moz-range-track,
+.media-volume::-moz-range-track {
+  height: 6px;
+  border-radius: 999px;
+  background: rgba(255,255,255,.25);
+}
+
+/* Range Thumb */
+.media-seek::-webkit-slider-thumb,
+.media-volume::-webkit-slider-thumb {
+  appearance: none;
+  width: 14px;
+  height: 14px;
+  border-radius: 999px;
+  background: #fff;
+  border: 2px solid var(--accent);
+  margin-top: -4px;
+}
+.media-seek::-moz-range-thumb,
+.media-volume::-moz-range-thumb {
+  width: 14px;
+  height: 14px;
+  border-radius: 999px;
+  background: #fff;
+  border: 2px solid var(--accent);
+}
+
+/* Volume */
+.media-volume {
+  flex: 0 0 90px;
+  max-width: 110px;
+  appearance: none;
+  height: 6px;
+  border-radius: 999px;
+  background: rgba(255,255,255,.25);
+  cursor: pointer;
+}
+
+/* Kleinere Screens: Controls kompakter */
+@media (max-width: 640px) {
+  .media-controls {
+    padding-inline: .55rem;
+    gap: .35rem;
+  }
+  .media-time {
+    display: none; /* optional: Zeit ausblenden, um Platz zu sparen */
+  }
+}
+
 
     /* Cards */
     .cards {
@@ -929,16 +1071,62 @@
         <p class="lead">Spring dich durch verrückte Welten – präzise Physik, knackige Level, stylische Hats.</p>
 
         <div class="device">
-          <div class="screen has-video">
-            <div class="video-wrapper">
-              <video id="demoVideo" preload="metadata" playsinline webkit-playsinline>
-                <source src="demo.mp4" type="video/mp4">
-                Dein Browser unterstützt das Video-Tag nicht.
-              </video>
-              <button class="video-play-btn" id="playBtn" aria-label="Video abspielen" aria-pressed="false">▶</button>
-            </div>
-          </div>
+  <div class="screen has-video">
+    <div class="video-wrapper media-player" data-state="paused" tabindex="0">
+      <video id="demoVideo" preload="metadata" playsinline webkit-playsinline>
+        <source src="demo.mp4" type="video/mp4">
+        Dein Browser unterstützt das Video-Tag nicht.
+      </video>
+
+      <div class="media-controls" aria-label="Videosteuerung" role="group">
+        <!-- Play / Pause -->
+        <button class="media-btn" id="mediaPlay" aria-label="Abspielen">
+          ▶
+        </button>
+
+        <!-- Zeit-Anzeige -->
+        <div class="media-time" aria-hidden="false">
+          <span id="mediaCurrent">0:00</span>
+          <span class="media-time-sep">/</span>
+          <span id="mediaDuration">0:00</span>
         </div>
+
+        <!-- Timeline -->
+        <input
+          type="range"
+          class="media-seek"
+          id="mediaSeek"
+          min="0"
+          max="100"
+          value="0"
+          aria-label="Position im Video"
+        >
+
+        <!-- Mute -->
+        <button class="media-btn" id="mediaMute" aria-label="Stumm schalten">
+          🔈
+        </button>
+
+        <!-- Volume -->
+        <input
+          type="range"
+          class="media-volume"
+          id="mediaVolume"
+          min="0"
+          max="100"
+          value="100"
+          aria-label="Lautstärke"
+        >
+
+        <!-- Fullscreen -->
+        <button class="media-btn" id="mediaFullscreen" aria-label="Vollbild umschalten">
+          ⛶
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
 
         <div class="hero-cta" style="margin-top:1.2rem">
           <a class="btn btn--secondary" href="#" rel="noopener">App&nbsp;Store</a>
@@ -1445,38 +1633,173 @@
       if (year) year.textContent = new Date().getFullYear();
     })();
 
-    // Video Play Overlay (robuster + ARIA)
+        // Custom Media Player
     (function () {
-      const btn = document.getElementById('playBtn');
-      const video = document.getElementById('demoVideo');
-      if (!btn || !video) return;
+      const video       = document.getElementById('demoVideo');
+      const player      = document.querySelector('.media-player');
+      const playBtn     = document.getElementById('mediaPlay');
+      const muteBtn     = document.getElementById('mediaMute');
+      const fsBtn       = document.getElementById('mediaFullscreen');
+      const seek        = document.getElementById('mediaSeek');
+      const volume      = document.getElementById('mediaVolume');
+      const currentEl   = document.getElementById('mediaCurrent');
+      const durationEl  = document.getElementById('mediaDuration');
 
-      function setBtnState(isPlaying) {
-        btn.style.display = isPlaying ? 'none' : 'grid';
-        btn.setAttribute('aria-pressed', isPlaying ? 'true' : 'false');
+      if (!video || !player || !playBtn || !seek || !volume) return;
+
+      // Standard-Lautstärke
+      video.volume = 1;
+
+      function formatTime(sec) {
+        if (!isFinite(sec)) return '0:00';
+        const s = Math.floor(sec % 60);
+        const m = Math.floor(sec / 60);
+        return m + ':' + String(s).padStart(2, '0');
       }
 
-      async function play() {
-        try {
-          await video.play();
-          setBtnState(true);
-        } catch (e) {
-          setBtnState(false);
-        }
+      function updatePlayState() {
+        const playing = !video.paused && !video.ended;
+        player.dataset.state = playing ? 'playing' : 'paused';
+        playBtn.textContent = playing ? '❚❚' : '▶';
+        playBtn.setAttribute('aria-label', playing ? 'Pausieren' : 'Abspielen');
       }
 
-      btn.addEventListener('click', play);
-      btn.addEventListener('keydown', (e) => {
-        if (e.key === 'Enter' || e.key === ' ') {
-          e.preventDefault();
-          play();
+      // Play/Pause Button
+      playBtn.addEventListener('click', () => {
+        if (video.paused || video.ended) {
+          video.play();
+        } else {
+          video.pause();
         }
       });
 
-      video.addEventListener('play',  () => setBtnState(true));
-      video.addEventListener('pause', () => setBtnState(false));
-      video.addEventListener('ended', () => setBtnState(false));
+      // Zeit + Fortschritt
+      video.addEventListener('loadedmetadata', () => {
+        durationEl.textContent = formatTime(video.duration);
+      });
+
+            let isSeeking = false;
+
+      // Zeit + Fortschritt updaten (aber nicht, während der User aktiv zieht)
+      video.addEventListener('timeupdate', () => {
+        if (!isSeeking) {
+          currentEl.textContent = formatTime(video.currentTime);
+          if (video.duration) {
+            const percent = (video.currentTime / video.duration) * 100;
+            seek.value = String(percent);
+          }
+        } else {
+          // Während des Ziehens nur Anzeige aktualisieren
+          currentEl.textContent = formatTime(video.currentTime);
+        }
+      });
+
+      // Wenn der User anfängt zu ziehen
+      seek.addEventListener('pointerdown', () => {
+        isSeeking = true;
+      });
+      seek.addEventListener('mousedown', () => { isSeeking = true; }); // Fallback für ältere Browser
+
+      // Während des Ziehens nur die Slider-Optik anpassen, nicht direkt springen
+      seek.addEventListener('input', () => {
+        if (!video.duration) return;
+        const percent = Number(seek.value) / 100;
+        const target = percent * video.duration;
+        currentEl.textContent = formatTime(target);
+      });
+
+      // Wenn der User loslässt → dann erst tatsächliches Seek im Video
+      function finishSeek() {
+        if (!video.duration) return;
+        const percent = Number(seek.value) / 100;
+        video.currentTime = percent * video.duration;
+        isSeeking = false;
+      }
+
+      seek.addEventListener('pointerup', finishSeek);
+      seek.addEventListener('mouseup', finishSeek);
+      seek.addEventListener('change', finishSeek); // Fallback (Keyboard etc.)
+
+
+      // Volume Slider
+      volume.addEventListener('input', () => {
+        const v = Number(volume.value) / 100;
+        video.volume = v;
+        video.muted = v === 0;
+        muteBtn.textContent = video.muted ? '🔇' : '🔈';
+        muteBtn.setAttribute('aria-label', video.muted ? 'Stummschaltung aufheben' : 'Stumm schalten');
+      });
+
+      // Mute Button
+      muteBtn.addEventListener('click', () => {
+        video.muted = !video.muted;
+        if (!video.muted && video.volume === 0) {
+          video.volume = 0.5;
+          volume.value = 50;
+        }
+        muteBtn.textContent = video.muted ? '🔇' : '🔈';
+        muteBtn.setAttribute('aria-label', video.muted ? 'Stummschaltung aufheben' : 'Stumm schalten');
+      });
+
+      // Fullscreen Helpers
+      function isFullscreen() {
+        return !!(document.fullscreenElement || document.webkitFullscreenElement);
+      }
+
+      function updateFsButton() {
+        fsBtn.textContent = isFullscreen() ? '🡼' : '⛶';
+      }
+
+      fsBtn.addEventListener('click', () => {
+        const elem = player;
+        if (!isFullscreen()) {
+          if (elem.requestFullscreen)      elem.requestFullscreen();
+          else if (elem.webkitRequestFullscreen) elem.webkitRequestFullscreen();
+        } else {
+          if (document.exitFullscreen)      document.exitFullscreen();
+          else if (document.webkitExitFullscreen) document.webkitExitFullscreen();
+        }
+      });
+
+      document.addEventListener('fullscreenchange', updateFsButton);
+      document.addEventListener('webkitfullscreenchange', updateFsButton);
+
+      // Sync Play/Pause
+      video.addEventListener('play', updatePlayState);
+      video.addEventListener('pause', updatePlayState);
+      video.addEventListener('ended', updatePlayState);
+
+      // Keyboard Shortcuts auf dem Player-Wrapper
+      player.addEventListener('keydown', (e) => {
+        // In Inputs nicht eingreifen
+        if (e.target.tagName === 'INPUT') return;
+
+        switch (e.key) {
+          case ' ':
+          case 'k':
+            e.preventDefault();
+            if (video.paused || video.ended) video.play();
+            else video.pause();
+            break;
+          case 'm':
+            e.preventDefault();
+            muteBtn.click();
+            break;
+          case 'ArrowRight':
+            video.currentTime = Math.min((video.duration || 0), video.currentTime + 5);
+            break;
+          case 'ArrowLeft':
+            video.currentTime = Math.max(0, video.currentTime - 5);
+            break;
+        }
+      });
+
+      // Initialer State
+      updatePlayState();
+      currentEl.textContent = '0:00';
+      durationEl.textContent = '0:00';
     })();
+
   </script>
 </body>
 </html>
