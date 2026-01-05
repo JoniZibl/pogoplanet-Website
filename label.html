@@ -123,13 +123,6 @@
     }
     li{color:var(--text-main)}
 
-    .lead{
-      font-size: clamp(1rem, 2.1vw, 1.1rem);
-      max-width: 65ch;
-      margin-inline:auto;
-      opacity:.95;
-    }
-
     /* =========================
        Header / Topbar
     ========================== */
@@ -219,17 +212,12 @@
       margin-bottom:2.5rem;
     }
 
-    /* Ein zentrales Modul */
     .card{
       background:var(--card-bg);
       border-radius:var(--radius);
       padding: clamp(1.4rem, 3.2vw, 2.6rem);
       box-shadow:var(--shadow);
       border:1px solid var(--card-border);
-    }
-
-    .section-intro{
-      margin-bottom: clamp(1.2rem, 3vw, 1.8rem);
     }
 
     .meta{
@@ -245,13 +233,31 @@
       color:var(--text-main);
     }
 
+    .notice{
+      display:block;
+      padding:.85rem 1rem;
+      border-radius:14px;
+      background: color-mix(in srgb, var(--brand-blue) 18%, #fff);
+      border:1px solid color-mix(in srgb, var(--brand-blue) 22%, #d7e1e8);
+      color:var(--text-main);
+      font-weight:650;
+      max-width: 70ch;
+      margin: 0 auto;
+      text-align:center;
+    }
+    .notice small{
+      display:block;
+      font-weight:600;
+      color:var(--text-muted);
+      margin-top:.25rem;
+    }
+
     hr{
       border:0;
       border-top:1px solid #e1e7ec;
       margin: clamp(1.6rem, 4vw, 2.2rem) 0;
     }
 
-    /* Links innerhalb des Cards hübsch */
     .card a{
       color: color-mix(in srgb, var(--brand-blue) 80%, #000);
       font-weight:600;
@@ -271,9 +277,12 @@
     }
     footer.footer a{ color:#fff; font-weight:700; }
 
-    /* =========================
-       Responsive
-    ========================== */
+    .footer-stack{
+      display:grid;
+      gap: .9rem;
+      justify-items:center;
+    }
+
     @media (max-width: 720px){
       .topbar{
         flex-direction:column;
@@ -321,11 +330,11 @@
         <h2 id="impressum-heading">Impressum</h2>
 
         <p class="meta">
-          Angaben gemäß § 5 TMG und Verantwortlicher im Sinne von § 18 Abs. 2 MStV
+          Angaben gemäß § 5 DDG (Digitale-Dienste-Gesetz) und Verantwortlicher im Sinne von § 18 Abs. 2 MStV (Medienstaatsvertrag)
         </p>
 
         <p>
-          <span class="label">Anbieter:</span><br>
+          <span class="label">Anbieter / Diensteanbieter:</span><br>
           Jonathan Zibler<br>
           Braugasse 2a<br>
           50859 Köln<br>
@@ -338,73 +347,65 @@
         </p>
 
         <p>
-          <span class="label">Inhaltlich verantwortlich:</span><br>
+          <span class="label">Inhaltlich verantwortlich gemäß § 18 Abs. 2 MStV:</span><br>
           Jonathan Zibler (Anschrift wie oben)
         </p>
 
-        <h3>Hinweis zur Rechtsform</h3>
+        <h3>Rechtsform</h3>
         <p>
-          Bei dem Angebot <strong>„POGO PLANET“</strong> handelt es sich um ein privat betriebenes bzw.
-          freiberufliches Projekt. Es besteht kein Eintrag im Handelsregister, und es handelt sich nicht
-          um eine Kapitalgesellschaft (z.&nbsp;B. GmbH, UG).
+          Privat betriebenes / freiberufliches Projekt. Kein Handelsregistereintrag. Keine Kapitalgesellschaft.
+        </p>
+
+        <h3>Hosting / technische Bereitstellung der Website</h3>
+        <p>
+          Diese Website wird über GitHub Pages bereitgestellt. Dabei werden technische Daten (u. a. IP-Adresse) zur Auslieferung
+          und Sicherheit verarbeitet.
+        </p>
+        <p>
+          <span class="label">GitHub-Kontaktadressen (laut Datenschutzerklärung):</span><br>
+          GitHub B.V., Prins Bernhardplein 200, 1097JB Amsterdam, Niederlande<br>
+          GitHub, Inc., 88 Colin P. Kelly Jr. St., San Francisco, CA 94107, United States
         </p>
 
         <h3>Haftung für Inhalte</h3>
         <p>
-          Als Diensteanbieter bin ich gemäß § 7 Abs. 1 TMG für eigene Inhalte auf diesen Seiten nach den
-          allgemeinen Gesetzen verantwortlich. Nach §§ 8 bis 10 TMG bin ich als Diensteanbieter jedoch
-          nicht verpflichtet, übermittelte oder gespeicherte fremde Informationen zu überwachen oder nach
-          Umständen zu forschen, die auf eine rechtswidrige Tätigkeit hinweisen.
+          Als Diensteanbieter bin ich für eigene Inhalte auf diesen Seiten nach den allgemeinen Gesetzen verantwortlich.
+          Ich bin jedoch nicht verpflichtet, übermittelte oder gespeicherte fremde Informationen zu überwachen oder nach Umständen
+          zu forschen, die auf eine rechtswidrige Tätigkeit hinweisen.
         </p>
         <p>
-          Verpflichtungen zur Entfernung oder Sperrung der Nutzung von Informationen nach den allgemeinen
-          Gesetzen bleiben hiervon unberührt. Eine diesbezügliche Haftung ist jedoch erst ab dem Zeitpunkt
-          der Kenntnis einer konkreten Rechtsverletzung möglich. Bei Bekanntwerden entsprechender
-          Rechtsverletzungen werde ich diese Inhalte umgehend entfernen.
+          Verpflichtungen zur Entfernung oder Sperrung der Nutzung von Informationen nach den allgemeinen Gesetzen bleiben hiervon
+          unberührt. Eine Haftung ist erst ab dem Zeitpunkt der Kenntnis einer konkreten Rechtsverletzung möglich.
+          Bei Bekanntwerden entsprechender Rechtsverletzungen entferne ich diese Inhalte umgehend.
         </p>
 
         <h3>Haftung für Links</h3>
         <p>
-          Mein Angebot kann Links zu externen Websites Dritter enthalten, auf deren Inhalte ich keinen
-          Einfluss habe. Deshalb kann ich für diese fremden Inhalte auch keine Gewähr übernehmen. Für
-          die Inhalte der verlinkten Seiten ist stets der jeweilige Anbieter oder Betreiber der Seiten
-          verantwortlich. Die verlinkten Seiten wurden zum Zeitpunkt der Verlinkung auf mögliche
-          Rechtsverstöße überprüft. Rechtswidrige Inhalte waren zum Zeitpunkt der Verlinkung nicht
-          erkennbar.
+          Mein Angebot kann Links zu externen Websites Dritter enthalten, auf deren Inhalte ich keinen Einfluss habe.
+          Deshalb kann ich für diese fremden Inhalte keine Gewähr übernehmen. Für die Inhalte der verlinkten Seiten ist stets der
+          jeweilige Anbieter oder Betreiber der Seiten verantwortlich.
         </p>
         <p>
-          Eine permanente inhaltliche Kontrolle der verlinkten Seiten ist jedoch ohne konkrete Anhaltspunkte
-          einer Rechtsverletzung nicht zumutbar. Bei Bekanntwerden von Rechtsverletzungen werde ich derartige
-          Links umgehend entfernen.
+          Eine permanente inhaltliche Kontrolle der verlinkten Seiten ist ohne konkrete Anhaltspunkte einer Rechtsverletzung nicht
+          zumutbar. Bei Bekanntwerden von Rechtsverletzungen entferne ich derartige Links umgehend.
         </p>
 
-        <h3>Urheberrecht / Schutz der Spielinhalte</h3>
+        <h3>Urheberrecht</h3>
         <p>
-          Die durch den Seitenbetreiber erstellten Inhalte und Werke auf diesen Seiten sowie alle Grafiken,
-          Designs, Level-Konzepte, Logos und sonstigen kreativen Bestandteile von
-          <strong>„POGO PLANET“</strong> unterliegen dem deutschen Urheberrecht. Beiträge Dritter sind als
-          solche gekennzeichnet, soweit sie verwendet werden.
-        </p>
-        <p>
-          Jede Art der Vervielfältigung, Bearbeitung, Verbreitung und jede Art der Verwertung außerhalb
-          der Grenzen des Urheberrechts bedarf der vorherigen schriftlichen Zustimmung des jeweiligen
-          Rechteinhabers. Insbesondere ist es untersagt, das Spieldesign, die Level, Spielmechaniken oder
-          Grafiken von <strong>„POGO PLANET“</strong> ohne Zustimmung zu kopieren, nachzubauen oder in
-          anderen Projekten zu verwenden.
-        </p>
-        <p>
-          Soweit Inhalte dieses Angebots nicht vom Betreiber erstellt wurden, werden die Urheberrechte
-          Dritter beachtet. Solltest du trotzdem auf eine Urheberrechtsverletzung aufmerksam werden, bitte
-          ich um einen entsprechenden Hinweis. Bei Bekanntwerden von Rechtsverletzungen werden derartige
-          Inhalte umgehend entfernt.
+          Die auf dieser Website veröffentlichten Inhalte und Werke (z. B. Texte, Grafiken, Designs, Logos, Level-Konzepte,
+          Spielmechaniken) unterliegen dem deutschen Urheberrecht. Jede Art der Verwertung außerhalb der Grenzen des Urheberrechts
+          bedarf der vorherigen schriftlichen Zustimmung des jeweiligen Rechteinhabers.
         </p>
 
-        <h3>Keine Abmahnung ohne vorherigen Kontakt</h3>
+        <h3>Verbraucherstreitbeilegung</h3>
         <p>
-          Im Falle von wettbewerbsrechtlichen, urheberrechtlichen, datenschutzrechtlichen oder ähnlichen
-          Problemen bitte ich dich, zur Vermeidung unnötiger Rechtsstreite und Kosten, mich bereits im
-          Vorfeld zu kontaktieren. Die Kostennote einer anwaltlichen Abmahnung ohne vorhergehende
-          Kontaktaufnahme mit mir wird im Sinne der Schadensminderungspflicht als unbegründet zurückgewiesen.
+          Ich bin nicht verpflichtet und nicht bereit, an Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle
+          teilzunehmen (Hinweis nach § 36 VSBG).
+        </p>
+
+        <h3>Hinweis zur EU-Online-Streitbeilegung (OS/ODR)</h3>
+        <p>
+          Die EU-ODR-Plattform ist seit dem 20. Juli 2025 eingestellt; ein entsprechender Link ist daher nicht mehr erforderlich.
         </p>
       </section>
 
@@ -415,11 +416,10 @@
         <h2 id="datenschutz-heading">Datenschutzerklärung</h2>
 
         <p class="meta">
-          Informationen nach Art. 12 ff. Datenschutz-Grundverordnung (DSGVO) zur Website und App „POGO PLANET“.
+          Datenschutzerklärung für die Website und App „POGO PLANET“ – Stand: Januar 2026
         </p>
 
-        <h3>1. Verantwortlicher</h3>
-        <p>Verantwortlicher für die Datenverarbeitung im Sinne der DSGVO ist:</p>
+        <h3>1) Verantwortlicher</h3>
         <p>
           Jonathan Zibler<br>
           Braugasse 2a<br>
@@ -428,197 +428,174 @@
           E-Mail: <a href="mailto:joni.zibl@gmail.com">joni.zibl@gmail.com</a>
         </p>
 
-        <h3>2. Allgemeine Hinweise zur Datenverarbeitung</h3>
+        <h3>2) Allgemeines</h3>
         <p>
-          Ich nehme den Schutz deiner personenbezogenen Daten sehr ernst. Personenbezogene Daten sind alle
-          Daten, mit denen du persönlich identifiziert werden kannst. Die Nutzung der Website ist in der
-          Regel ohne Angabe personenbezogener Daten möglich. In der App <strong>„POGO PLANET“</strong> werden
-          jedoch bestimmte Daten verarbeitet, damit Highscores, Ränge und Spielfortschritt funktionieren.
-        </p>
-        <p>
-          Die Datenverarbeitung erfolgt unter Beachtung der geltenden Datenschutzvorschriften, insbesondere
-          der DSGVO und des BDSG.
+          Ich nehme den Schutz deiner personenbezogenen Daten ernst. Personenbezogene Daten sind alle Daten, mit denen du persönlich
+          identifiziert werden kannst. Ich verarbeite personenbezogene Daten nur, soweit dies zur Bereitstellung der Website bzw.
+          der App-Funktionen erforderlich ist oder eine Einwilligung vorliegt.
         </p>
 
-        <h3>3. Datenverarbeitung bei Nutzung der Website</h3>
+        <h3>A) Datenverarbeitung auf der Website</h3>
 
-        <h4>3.1 Server-Logfiles</h4>
+        <h4>3) Hosting über GitHub Pages / Server-Logs</h4>
         <p>
-          Beim Aufruf dieser Website werden durch den Hosting-Anbieter automatisch Informationen in so
-          genannten Server-Logfiles erhoben und gespeichert, die dein Browser automatisch übermittelt.
-          Dies sind insbesondere:
+          Diese Website wird über GitHub Pages bereitgestellt. Beim Besuch einer GitHub-Pages-Website wird die IP-Adresse der
+          Besucher:innen protokolliert und zu Sicherheitszwecken gespeichert – unabhängig davon, ob man bei GitHub eingeloggt ist
+          oder nicht.
+        </p>
+        <p>
+          <span class="label">Zweck:</span> sichere und stabile Auslieferung der Website, Abwehr/Analyse von Angriffen,
+          Missbrauchsprävention.<br>
+          <span class="label">Rechtsgrundlage:</span> Art. 6 Abs. 1 lit. f DSGVO (berechtigtes Interesse an sicherem Betrieb).
+        </p>
+        <p>
+          <span class="label">Empfänger (Hosting-Anbieter):</span><br>
+          GitHub B.V., Prins Bernhardplein 200, 1097JB Amsterdam, Niederlande<br>
+          GitHub, Inc., 88 Colin P. Kelly Jr. St., San Francisco, CA 94107, United States
+        </p>
+        <p>
+          <span class="label">Hinweis zu Drittlandübermittlung:</span>
+          GitHub verarbeitet personenbezogene Daten auch in den USA und anderen Ländern.
+        </p>
+
+        <h4>4) Cookies / Tracking / Analytics</h4>
+        <p>
+          Auf dieser Website nutze ich kein Tracking, keine Analytics-Tools und keine Marketing-Cookies.
+        </p>
+        <p>
+          Ich setze keine eigenen Cookies für Analyse/Marketing. GitHub kann im Rahmen des Hosting-Betriebs technisch notwendige
+          Cookies/Technologien einsetzen (z. B. Sicherheits- und Funktionscookies). Details dazu beschreibt GitHub in seiner
+          Datenschutzerklärung.
+        </p>
+
+        <h4>5) Kontaktaufnahme per E-Mail</h4>
+        <p>
+          Wenn du mich per E-Mail kontaktierst, verarbeite ich die von dir übermittelten Daten (z. B. E-Mail-Adresse, Inhalt der
+          Nachricht), um deine Anfrage zu bearbeiten.
+        </p>
+        <p>
+          <span class="label">Rechtsgrundlage:</span> Art. 6 Abs. 1 lit. b DSGVO (Anfrage/Vertrag/Vertragsanbahnung)
+          und/oder Art. 6 Abs. 1 lit. f DSGVO (berechtigtes Interesse an Kommunikation).<br>
+          <span class="label">Speicherdauer:</span> solange erforderlich zur Bearbeitung; anschließend Löschung, sofern keine
+          gesetzlichen Aufbewahrungspflichten entgegenstehen.
+        </p>
+
+        <h3>B) Datenverarbeitung in der App „POGO PLANET“</h3>
+
+        <h4>6) Lokale Speicherung auf dem Gerät</h4>
+        <p>
+          Die App speichert bestimmte Daten lokal auf deinem Gerät (z. B. Einstellungen, Spielstände, Fortschritt), damit das Spiel
+          funktioniert.
+        </p>
+        <p>
+          <span class="label">Zweck:</span> grundlegende Spielfunktionen, Komfort, Fortschritt.<br>
+          <span class="label">Rechtsgrundlage:</span> Art. 6 Abs. 1 lit. b DSGVO (Bereitstellung der App-Funktionen).
+        </p>
+
+        <h4>7) Highscores / Ranglisten / Fortschritt über Firebase (Google)</h4>
+        <p>
+          Für Highscores, Ranglisten und ggf. Fortschrittsspeicherung kann die App eine Verbindung zu Firebase (Dienst von Google)
+          aufbauen. Dabei können folgende Daten verarbeitet werden:
         </p>
         <ul>
-          <li>IP-Adresse (gekürzt oder pseudonymisiert, soweit möglich)</li>
-          <li>Datum und Uhrzeit der Anfrage</li>
-          <li>abgerufene Seite / Datei</li>
-          <li>übertragene Datenmenge</li>
-          <li>Browsertyp und Browserversion</li>
-          <li>Betriebssystem</li>
-          <li>Referrer-URL (zuvor besuchte Seite, sofern übermittelt)</li>
+          <li>In-Game-Spielername (von dir vergeben)</li>
+          <li>Highscores, Zeiten, Ranglistenpositionen, levelbezogene Ergebnisse</li>
+          <li>technische Kennungen (z. B. Firebase-User-ID / app-interne IDs) zur Zuordnung von Einträgen</li>
+          <li>Zeitstempel und technische Metadaten, die für Ranking/Integrität nötig sind</li>
         </ul>
         <p>
-          Die Verarbeitung erfolgt zur Gewährleistung eines technisch stabilen und sicheren Betriebs der
-          Website (Art. 6 Abs. 1 lit. f DSGVO – berechtigtes Interesse).
+          <span class="label">Zweck:</span> Bereitstellung zentraler Spielfunktionen (Ranglisten/Highscores/Fortschritt).<br>
+          <span class="label">Rechtsgrundlage:</span> Art. 6 Abs. 1 lit. b DSGVO.
+        </p>
+        <p>
+          <span class="label">Empfänger:</span> Google Ireland Limited (Firebase-Dienste)<br>
+          Gordon House, Barrow Street, Dublin 4, D04 E5W5, Irland
+        </p>
+        <p>
+          <span class="label">Hinweis zu Drittlandübermittlung:</span>
+          Je nach Firebase-Konfiguration und Datenfluss kann eine Verarbeitung/Übermittlung außerhalb der EU/EWR (z. B. USA)
+          stattfinden. In solchen Fällen stützt sich die Übermittlung auf geeignete Garantien (z. B. Standardvertragsklauseln),
+          soweit erforderlich.
         </p>
 
-        <h4>3.2 Kontaktaufnahme per E-Mail</h4>
+        <h4>8) Werbung / Rewarded Ads (falls in der App aktiv)</h4>
         <p>
-          Wenn du mich per E-Mail kontaktierst, werden die von dir übermittelten Angaben (z.&nbsp;B. Name,
-          E-Mail-Adresse, Inhalt der Nachricht) gespeichert, um deine Anfrage zu bearbeiten. Rechtsgrundlage
-          ist Art. 6 Abs. 1 lit. b DSGVO (Vertrag/Vertragsanbahnung) oder Art. 6 Abs. 1 lit. f DSGVO
-          (berechtigtes Interesse an der Beantwortung von Anfragen).
+          In der App können Werbeanzeigen eingebunden sein, insbesondere Rewarded Ads (Belohnung nach freiwilligem Ansehen).
+          Dabei können – abhängig vom eingesetzten Werbe-SDK und den Geräteeinstellungen – Geräte- und Nutzungsdaten verarbeitet
+          werden (z. B. Werbe-ID, Gerätetyp/OS-Version, IP-Adresse, Interaktionsdaten).
+        </p>
+        <p>
+          <span class="label">Zweck:</span> Finanzierung der App und Bereitstellung von optionalen Belohnungsmechaniken.<br>
+          <span class="label">Rechtsgrundlagen (je nach Ausgestaltung):</span><br>
+          Art. 6 Abs. 1 lit. b DSGVO (wenn du freiwillig eine Reward-Anzeige startest, um eine In-Game-Belohnung zu erhalten)<br>
+          Art. 6 Abs. 1 lit. a DSGVO (Einwilligung), sofern personalisierte Werbung/Tracking oder eine Einwilligung nach anwendbaren
+          Regeln erforderlich ist
         </p>
 
-        <h3>4. Datenverarbeitung in der POGO PLANET App</h3>
+        <h4>9) Analytics / Crashlytics</h4>
         <p>
-          <strong>POGO PLANET</strong> ist hauptsächlich ein Solo-Spiel, das du auch im lokalen Koop-Modus
-          an einem Gerät spielen kannst. Es gibt aktuell <strong>kein Online-Multiplayer über das Internet</strong>.
+          Nicht aktiv. Es werden aktuell keine Analytics- oder Crashlytics-Dienste eingesetzt (keine Nutzungsanalyse, keine
+          automatischen Crashberichte).
         </p>
 
-        <h4>4.1 Spielerkonto, Name &amp; Highscores (Firebase)</h4>
+        <h3>10) Speicherdauer</h3>
         <p>
-          Für die Verwaltung von Highscores, Ranglisten und Spielfortschritt kann die App Verbindung zu
-          <strong>Firebase</strong> (Dienst von Google Ireland Limited) aufnehmen. Dabei können folgende
-          Daten verarbeitet werden:
+          Ich speichere personenbezogene Daten nur so lange, wie es für die genannten Zwecke erforderlich ist:
         </p>
         <ul>
-          <li>In-Game-Spielername (manuell vergeben oder optional über Login verknüpft)</li>
-          <li>Spielstände, Level-Fortschritt, Highscores und Ränge</li>
-          <li>technische Identifikatoren (z.&nbsp;B. Geräte-ID oder App-spezifische IDs)</li>
+          <li><strong>Website:</strong> IP/Server-Logs werden durch GitHub Pages zu Sicherheitszwecken gespeichert.</li>
+          <li><strong>App (Ranglisten/Highscores):</strong> solange dein Profil/Eintrag benötigt wird (z. B. bis zur Löschung auf Anfrage, sofern keine zwingenden Gründe entgegenstehen).</li>
+          <li><strong>E-Mails:</strong> solange erforderlich zur Bearbeitung und ggf. Rückfragen; anschließend Löschung, sofern keine Pflichten entgegenstehen.</li>
         </ul>
-        <p>
-          Der Spielername wird in erster Linie manuell vergeben. Eine spätere optionale Verknüpfung mit
-          Google-Login (Firebase Authentication) ist geplant, um dein Konto gegen Verlust zu schützen und
-          auf mehreren Geräten zu nutzen. Dein manuell vergebener Spielername bleibt dabei der Haupt-Name,
-          der im Spiel angezeigt wird.
-        </p>
-        <p>
-          Die Verarbeitung erfolgt, um dir zentrale Spielfunktionen (Highscores, Ranglisten,
-          Fortschrittsspeicherung) anbieten zu können (Art. 6 Abs. 1 lit. b DSGVO – Vertragserfüllung).
-        </p>
 
-        <h4>4.2 Lokaler Koop-Modus</h4>
-        <p>
-          Im Koop-Modus spielst du gemeinsam mit anderen Personen am <strong>gleichen Gerät</strong>.
-          Es findet dabei keine zusätzliche Online-Übertragung personenbezogener Daten statt, sondern
-          nur lokale Eingaben (z.&nbsp;B. Touch-Input) auf deinem Gerät.
-        </p>
-
-        <h4>4.3 Werbung (Ads)</h4>
-        <p>
-          In <strong>POGO PLANET</strong> können Werbeanzeigen (z.&nbsp;B. Rewards für zusätzliche Herzen
-          oder zum Freischalten von kosmetischen Inhalten wie Hüten) angezeigt werden. Dabei können,
-          je nach eingesetztem Werbenetzwerk, Nutzungs- und Geräte-Daten verarbeitet werden, zum Beispiel:
-        </p>
+        <h3>11) Deine Rechte</h3>
+        <p>Du hast (je nach Voraussetzungen) folgende Rechte:</p>
         <ul>
-          <li>Geräteinformationen (z.&nbsp;B. Modell, Betriebssystem-Version)</li>
-          <li>Werbe-ID deines Geräts (z.&nbsp;B. Google Advertising ID / IDFA)</li>
-          <li>Informationen darüber, dass du eine bestimmte Werbung angesehen oder darauf geklickt hast</li>
+          <li>Auskunft (Art. 15 DSGVO)</li>
+          <li>Berichtigung (Art. 16 DSGVO)</li>
+          <li>Löschung (Art. 17 DSGVO)</li>
+          <li>Einschränkung der Verarbeitung (Art. 18 DSGVO)</li>
+          <li>Datenübertragbarkeit (Art. 20 DSGVO)</li>
+          <li>Widerspruch (Art. 21 DSGVO)</li>
+          <li>Widerruf einer Einwilligung (Art. 7 Abs. 3 DSGVO)</li>
         </ul>
         <p>
-          Diese Verarbeitung erfolgt auf Grundlage von Art. 6 Abs. 1 lit. b DSGVO (Belohnung im Spiel
-          nach Ansehen von Werbung als Teil der Spielmechanik) und/oder Art. 6 Abs. 1 lit. a DSGVO
-          (Einwilligung, soweit sie im System oder im Consent-Dialog eingeholt wird).
-        </p>
-        <p>
-          Sofern das Werbenetzwerk eine gesonderte Einwilligung (z.&nbsp;B. für personalisierte Werbung)
-          benötigt, wirst du in der App hierzu gesondert informiert und kannst deine Entscheidung treffen.
+          Zur Ausübung deiner Rechte reicht eine E-Mail an:
+          <a href="mailto:joni.zibl@gmail.com">joni.zibl@gmail.com</a><br>
+          Wenn es um App-Daten/Highscores geht, hilft es, wenn du deinen In-Game-Namen und – falls verfügbar – eine Profil-/User-Kennung
+          mitschickst, damit ich die Daten eindeutig zuordnen kann.
         </p>
 
-        <h4>4.4 Analysedaten / Crashlogs (optional)</h4>
+        <h3>Automatisierte Entscheidungen / Profiling</h3>
         <p>
-          Um die App zu verbessern, Bugs zu finden und die Performance zu optimieren, können anonyme
-          oder pseudonyme Nutzungsdaten und Crashberichte erfasst werden (z.&nbsp;B. über Firebase Analytics
-          oder Crashlytics). Dabei werden typischerweise folgende Daten verarbeitet:
-        </p>
-        <ul>
-          <li>App-Version, Gerätetyp, Betriebssystem-Version</li>
-          <li>technische Ereignisse (z.&nbsp;B. Abstürze, Ladezeiten, Fehlercodes)</li>
-          <li>allgemeine Nutzungsstatistiken (z.&nbsp;B. welche Level wie oft gespielt werden)</li>
-        </ul>
-        <p>
-          Die Verarbeitung erfolgt auf Grundlage von Art. 6 Abs. 1 lit. f DSGVO (berechtigtes Interesse
-          an einer stabilen und nutzerfreundlichen App). Soweit Analysen nicht zwingend erforderlich sind,
-          können sie in der App optional deaktiviert oder nur nach Einwilligung aktiviert werden.
+          Eine automatisierte Entscheidungsfindung oder Profiling im Sinne von Art. 22 DSGVO findet durch mich nicht statt.
         </p>
 
-        <h3>5. Rechtsgrundlagen der Verarbeitung</h3>
+        <h3>Pflicht zur Bereitstellung von Daten</h3>
         <p>
-          Je nach Vorgang stützen sich die Verarbeitungen insbesondere auf folgende Rechtsgrundlagen:
-        </p>
-        <ul>
-          <li>Art. 6 Abs. 1 lit. b DSGVO – Vertragserfüllung / vorvertragliche Maßnahmen<br>
-              (z.&nbsp;B. Nutzung der App, Speicherung von Highscores und Ranglisten).</li>
-          <li>Art. 6 Abs. 1 lit. a DSGVO – Einwilligung<br>
-              (z.&nbsp;B. optionale Analysen, personalisierte Werbung, soweit eingesetzt).</li>
-          <li>Art. 6 Abs. 1 lit. f DSGVO – berechtigtes Interesse<br>
-              (z.&nbsp;B. technische Sicherheit, Missbrauchsvermeidung, grundlegende Nutzungsstatistik).</li>
-        </ul>
-
-        <h3>6. Speicherdauer</h3>
-        <p>
-          Personenbezogene Daten werden nur so lange gespeichert, wie es für die genannten Zwecke
-          erforderlich ist oder gesetzliche Aufbewahrungsfristen bestehen.
-        </p>
-        <ul>
-          <li>Spielstände, Highscores, Ränge und dein Spielername bleiben gespeichert,
-              solange dein Konto bzw. dein Spielprofil aktiv ist.</li>
-          <li>Server-Logfiles des Hosters werden in der Regel nach wenigen Wochen gelöscht
-              (konkrete Frist hängt vom jeweiligen Hoster ab).</li>
-          <li>Kontaktanfragen per E-Mail werden so lange aufbewahrt, wie es für die Bearbeitung
-              und etwaige Rückfragen nötig ist.</li>
-        </ul>
-
-        <h3>7. Weitergabe von Daten / Empfänger</h3>
-        <p>
-          Eine Weitergabe personenbezogener Daten an Dritte erfolgt nur, soweit dies für den Betrieb der
-          Website oder der App erforderlich ist oder du ausdrücklich eingewilligt hast. Mögliche Empfänger sind:
-        </p>
-        <ul>
-          <li>Hosting-Provider der Website (Serverbetrieb)</li>
-          <li>Google Ireland Limited (Firebase-Dienste, z.&nbsp;B. Realtime Database, Auth, Analytics)</li>
-          <li>Werbenetzwerke für In-App-Ads, soweit integriert</li>
-        </ul>
-        <p>
-          Soweit Diensteanbieter außerhalb der EU/EWR (z.&nbsp;B. in den USA) eingesetzt werden, erfolgt die
-          Verarbeitung auf Grundlage geeigneter Garantien im Sinne der Art. 44 ff. DSGVO (z.&nbsp;B.
-          EU-Standardvertragsklauseln oder ein Angemessenheitsbeschluss der EU-Kommission). Die
-          entsprechenden Informationen des jeweiligen Dienstes kannst du in dessen eigener Datenschutzerklärung
-          nachlesen.
+          Die Bereitstellung von Daten ist grundsätzlich freiwillig. Ohne In-Game-Namen und Score-/Ranglisten-Daten können jedoch
+          Ranglisten- und Highscore-Funktionen nicht genutzt werden.
         </p>
 
-        <h3>8. Deine Rechte als betroffene Person</h3>
-        <p>Dir stehen bezüglich deiner personenbezogenen Daten die folgenden Rechte zu:</p>
-        <ul>
-          <li><strong>Auskunft</strong> (Art. 15 DSGVO)</li>
-          <li><strong>Berichtigung</strong> (Art. 16 DSGVO)</li>
-          <li><strong>Löschung</strong> (Art. 17 DSGVO)</li>
-          <li><strong>Einschränkung</strong> der Verarbeitung (Art. 18 DSGVO)</li>
-          <li><strong>Datenübertragbarkeit</strong> (Art. 20 DSGVO)</li>
-          <li><strong>Widerspruch</strong> (Art. 21 DSGVO)</li>
-          <li><strong>Widerruf</strong> einer Einwilligung (Art. 7 Abs. 3 DSGVO)</li>
-        </ul>
+        <h3>12) Beschwerderecht bei einer Aufsichtsbehörde</h3>
         <p>
-          Zur Ausübung deiner Rechte kannst du dich jederzeit unter
-          <a href="mailto:joni.zibl@gmail.com">joni.zibl@gmail.com</a> an mich wenden.
+          Wenn du der Auffassung bist, dass die Verarbeitung deiner personenbezogenen Daten gegen Datenschutzrecht verstößt, hast du
+          das Recht auf Beschwerde bei einer Aufsichtsbehörde (Art. 77 DSGVO). Für NRW z. B.:
+        </p>
+        <p>
+          Landesbeauftragte für Datenschutz und Informationsfreiheit Nordrhein-Westfalen (LDI NRW)<br>
+          Postfach 20 04 44, 40102 Düsseldorf<br>
+          Kavalleriestraße 2–4, 40213 Düsseldorf<br>
+          E-Mail: <a href="mailto:poststelle@ldi.nrw.de">poststelle@ldi.nrw.de</a>
         </p>
 
-        <h3>9. Beschwerderecht bei der Aufsichtsbehörde</h3>
+        <h3>13) Änderungen dieser Datenschutzerklärung</h3>
         <p>
-          Wenn du der Auffassung bist, dass die Verarbeitung deiner personenbezogenen Daten gegen das
-          Datenschutzrecht verstößt, hast du das Recht auf Beschwerde bei einer
-          Datenschutzaufsichtsbehörde (Art. 77 DSGVO).
+          Diese Datenschutzerklärung kann angepasst werden, wenn sich Website/App-Funktionen oder rechtliche Anforderungen ändern.
+          Es gilt die jeweils aktuelle Version auf dieser Seite.
         </p>
 
-        <h3>10. Aktualität dieser Datenschutzerklärung</h3>
-        <p>
-          Diese Datenschutzerklärung kann von Zeit zu Zeit angepasst werden, etwa wenn die App um neue
-          Funktionen erweitert wird oder sich rechtliche Rahmenbedingungen ändern. Es gilt stets die
-          aktuell auf dieser Seite veröffentlichte Version.
-        </p>
-
-        <p class="meta">Stand dieser Datenschutzerklärung: Dezember 2025</p>
+        <p class="meta">Stand dieser Datenschutzerklärung: Januar 2026</p>
       </section>
 
     </div>
@@ -626,9 +603,19 @@
 </main>
 
 <footer class="footer">
-  <div class="container">
-    © <span id="year"></span> POGO PLANET – Jonathan Zibler ·
-    <a href="index.html">Zurück zur Startseite</a>
+  <div class="container footer-stack">
+
+    <!-- HINWEIS GANZ UNTEN (wie gewünscht) -->
+    <span class="notice">
+      App-Hinweis: Diese Seite ist in der App verlinkt – beim Klick auf „Impressum“ oder „Datenschutz“ öffnet sie sich im Browser.
+      <small>Kein In-App-Textfenster, sondern Weiterleitung auf die Website.</small>
+    </span>
+
+    <div>
+      © <span id="year"></span> POGO PLANET – Jonathan Zibler ·
+      <a href="index.html">Zurück zur Startseite</a>
+    </div>
+
   </div>
 </footer>
 
