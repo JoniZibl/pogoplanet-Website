@@ -10,9 +10,9 @@
 
     // --- ASSETS ---
     const jumperImg = new Image();
-    jumperImg.src = 'assets/img/PogoMann.png';
+    jumperImg.src = 'src/assets/img/PogoMann.png';
     const jumperImg2 = new Image();
-    jumperImg2.src = 'assets/img/PogoMann_2.png';
+    jumperImg2.src = 'src/assets/img/PogoMann_2.png';
 
     // --- CONFIG ---
     const GRAVITY = 950;          // Floatier (was 950)
@@ -40,11 +40,11 @@
     // --- DECORATION (Floating Images) ---
     let floaters = [];
     const floaterUrls = [
-        'assets/minigame_images/RandomPic_2.png',
-        'assets/minigame_images/RandomPic_3.png',
-        'assets/minigame_images/RandomPic_4.png',
-        'assets/minigame_images/RandomPic_5.png',
-        'assets/minigame_images/RandomPic_1.png'
+        'src/assets/minigame_images/RandomPic_2.png',
+        'src/assets/minigame_images/RandomPic_3.png',
+        'src/assets/minigame_images/RandomPic_4.png',
+        'src/assets/minigame_images/RandomPic_5.png',
+        'src/assets/minigame_images/RandomPic_1.png'
     ];
     let loadedFloaters = [];
     // Preload
@@ -58,16 +58,16 @@
     let floorItems = [];
     // TODO: Add your image paths here. I'm using a placeholder for now.
     const floorImageUrls = [
-        'assets/floor_images/floor_1.png',
-        'assets/floor_images/floor_2.png',
-        'assets/floor_images/floor_3.png',
-        'assets/floor_images/floor_4.png',
-        'assets/floor_images/floor_5.png',
-        'assets/floor_images/floor_6.png',
-        'assets/floor_images/floor_7.png',
-        'assets/floor_images/floor_8.png',
-        'assets/floor_images/floor_9.png',
-        'assets/floor_images/floor_10.png',
+        'src/assets/floor_images/floor_1.png',
+        'src/assets/floor_images/floor_2.png',
+        'src/assets/floor_images/floor_3.png',
+        'src/assets/floor_images/floor_4.png',
+        'src/assets/floor_images/floor_5.png',
+        'src/assets/floor_images/floor_6.png',
+        'src/assets/floor_images/floor_7.png',
+        'src/assets/floor_images/floor_8.png',
+        'src/assets/floor_images/floor_9.png',
+        'src/assets/floor_images/floor_10.png',
     ];
     let loadedFloorImages = [];
     floorImageUrls.forEach(url => {
@@ -465,6 +465,8 @@
         if (header) {
             header.style.setProperty('--camera-x', `${cameraX}px`);
         }
+
+
 
         updateHUD();
 

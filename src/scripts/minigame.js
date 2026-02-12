@@ -14,7 +14,7 @@
     const startBtn = document.getElementById('startBtn');
     // --- ASSETS ---
     const jumperImg = new Image();
-    jumperImg.src = 'assets/img/PogoMann.png';
+    jumperImg.src = 'src/assets/img/PogoMann.png';
 
     // --- GEOMETRY & RESIZING ---
     function resizeCanvas() {
@@ -48,7 +48,7 @@
         height: PLAYER_HEIGHT,
         vx: 0,
         vy: 0,
-        angle: 15, // Start tilted
+        angle: 0, // Start upright
         color: '#ebd263'
     };
 

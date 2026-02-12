@@ -51,7 +51,7 @@ header.hero {
 }
 
 /* Default Camera Translation for all static header elements */
-header.hero> :not(#global-pogo-container):not(.header-ground):not(.topbar) {
+header.hero> :not(#global-pogo-container):not(.header-ground) {
     transform: translateX(calc(-1 * var(--camera-x, 0px)));
 }
 
@@ -189,6 +189,12 @@ body.pogo-mode-active .hero .jumper-wrapper {
 }
 
 @media (max-width: 640px) {
+
+    /* FIX: Ensure Topbar stays fixed (no parallax) on mobile so menu works */
+    header.hero .topbar {
+        transform: none !important;
+    }
+
     #menu-toggle {
         display: block;
     }
