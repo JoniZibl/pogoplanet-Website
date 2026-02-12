@@ -14,7 +14,7 @@
     const startBtn = document.getElementById('startBtn');
     // --- ASSETS ---
     const jumperImg = new Image();
-    jumperImg.src = '../assets/img/PogoMann.png';
+    jumperImg.src = 'assets/img/PogoMann.png';
 
     // --- GEOMETRY & RESIZING ---
     function resizeCanvas() {
