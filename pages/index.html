@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="de" class="no-js">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>POGO PLANET</title>
+    <meta name="description"
+        content="POGO PLANET – Promo-Onepager mit Hero, App-Section, Konsolen-Karten, Features, Countdown und Tabs." />
+    <meta name="theme-color" content="#BE3144" />
+    <meta name="color-scheme" content="light dark" />
+    <link rel="icon" href="../assets/img/favicon.svg" type="image/svg+xml">
+
+    <!-- Fonts -->
+    <link rel="preload" href="../assets/fonts/Bungee-Regular.ttf" as="font" type="font/ttf" crossorigin>
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="../styles/main.css">
+    <link rel="stylesheet" href="../styles/components/header.css">
+    <link rel="stylesheet" href="../styles/components/buttons.css">
+    <link rel="stylesheet" href="../styles/components/cards.css">
+    <link rel="stylesheet" href="../styles/components/minigame.css">
+    <link rel="stylesheet" href="../styles/components/footer.css">
+    <link rel="stylesheet" href="../styles/pages/home.css">
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/flickity@2/dist/flickity.min.css">
+
+    <script src="../scripts/main.js" defer></script>
+    <script src="../scripts/home.js" defer></script>
+    <script src="../scripts/minigame.js" defer></script>
+</head>
+
+<body>
+    <a class="sr-only" href="#main">Zum Inhalt springen</a>
+
+    <header class="hero">
+        <div class="sun" aria-hidden="true"></div>
+        <canvas id="hero-particles"></canvas>
+
+        <div class="container topbar" role="navigation" aria-label="Hauptnavigation">
+            <a class="brand" href="index.html">
+                <span class="brand-mark" aria-hidden="true">
+                    <img src="../assets/img/logo-pp.png" alt="">
+                </span>
+                <span>POGO PLANET</span>
+            </a>
+            <button id="menu-toggle" aria-label="Menü öffnen" aria-expanded="false">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </button>
+            <nav id="main-nav">
+                <a class="btn btn--ghost" href="news.html">News</a>
+                <a class="btn btn--primary"
+                    href="https://play.google.com/store/apps/details?id=com.jonathanzibler.pogoplanet" target="_blank"
+                    rel="noopener">Download</a>
+            </nav>
+        </div>
+
+        <div class="container hero-title" aria-labelledby="title">
+            <h1 id="title" class="h1"><strong>POGO </strong><small>PLANET</small></h1>
+            <div class="hero-spacer" aria-hidden="true"></div>
+        </div>
+
+        <div class="planet" aria-hidden="true">
+            <img class="planet-img" alt="" src="../assets/img/Weltkugel.png" fetchpriority="high" loading="eager"
+                decoding="async" />
+            <div class="jumper-wrapper">
+                <img class="jumper-img" alt="" src="../assets/img/PogoMann.png" loading="eager" decoding="async" />
+            </div>
+        </div>
+
+        <div class="container" style="text-align:center">
+            <div class="hero-cta">
+                <button id="pogo-mode-trigger" class="btn-play-composite">
+                    <span class="btn-play-label">PLAY</span>
+                    <div class="btn-play-inner">
+                        <svg viewBox="0 0 24 24" fill="currentColor">
+                            <path
+                                d="M7 6.44v11.12c0 1.57 1.72 2.53 3.06 1.72l9.16-5.56c1.29-.78 1.29-2.65 0-3.44L10.06 4.72C8.72 3.91 7 4.87 7 6.44z" />
+                        </svg>
+                    </div>
+                </button>
+            </div>
+        </div>
+
+        <!-- Triangle Decoration -->
+        <div class="hero-trees" aria-hidden="true">
+            <div class="tree t-1"></div>
+            <div class="tree t-2"></div>
+            <div class="tree t-3"></div>
+            <div class="tree t-4"></div>
+            <div class="tree t-5"></div>
+        </div>
+
+        <!-- Pogo Mode Collidable Ground -->
+        <div class="header-ground"></div>
+    </header>
+
+    <main id="main">
+
+        <!-- ===== TRY THE APP ===== -->
+        <section id="app" class="section is-light" aria-labelledby="app-title">
+            <div class="container center">
+                <h2 id="app-title" class="h2">Teste die App</h2>
+                <p class="lead">Spring dich durch verrückte Welten – präzise Physik, knackige Level, stylische Hats.</p>
+
+                <div class="device">
+                    <div class="screen has-video">
+                        <div class="video-wrapper media-player" data-state="paused" tabindex="0">
+
+                            <!-- ✅ Autoplay beim Laden (stumm) -->
+                            <video id="demoVideo" preload="metadata" playsinline webkit-playsinline muted autoplay loop>
+                                <source src="../assets/video/demo.mp4" type="video/mp4">
+                                Dein Browser unterstützt das Video-Tag nicht.
+                            </video>
+
+                            <div class="media-controls" aria-label="Videosteuerung" role="group">
+                                <!-- Play / Pause -->
+                                <button class="media-btn" id="mediaPlay" aria-label="Abspielen">▶</button>
+
+                                <!-- Zeit-Anzeige -->
+                                <div class="media-time" aria-hidden="false">
+                                    <span id="mediaCurrent">0:00</span>
+                                    <span class="media-time-sep">/</span>
+                                    <span id="mediaDuration">0:00</span>
+                                </div>
+
+                                <!-- Timeline -->
+                                <input type="range" class="media-seek" id="mediaSeek" min="0" max="100" value="0"
+                                    aria-label="Position im Video">
+
+                                <!-- Mute -->
+                                <button class="media-btn" id="mediaMute"
+                                    aria-label="Stummschaltung aufheben">🔇</button>
+
+                                <!-- Volume -->
+                                <input type="range" class="media-volume" id="mediaVolume" min="0" max="100" value="0"
+                                    aria-label="Lautstärke">
+
+                                <!-- Fullscreen -->
+                                <button class="media-btn" id="mediaFullscreen"
+                                    aria-label="Vollbild umschalten">⛶</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="hero-cta" style="margin-top:1.2rem">
+                    <a class="btn btn--secondary" href="#" rel="noopener">App&nbsp;Store</a>
+                    <a class="btn btn--secondary" href="#" rel="noopener">Google&nbsp;Play</a>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- ===== HAVE FUN + SLIDER ===== -->
+        <section class="section is-light" aria-labelledby="fun-title">
+            <div class="container center">
+                <h2 id="fun-title" class="h2">Entdecke die Welten von POGO PLANET</h2>
+                <p class="lead">
+                    Springe, rotiere, katapultiere, stoße, beschleunige, kippe, drehe, booste, schwebe, stürze –
+                    <strong>aber lande niemals auf dem Kopf.</strong>
+                </p>
+
+                <div class="gallery js-flickity" data-flickity='{
+               "wrapAround": true,
+               "imagesLoaded": true,
+               "pageDots": true,
+               "prevNextButtons": true
+             }'>
+
+                    <div class="gallery-cell"><img src="../assets/img/Websiteimg1.png"
+                            alt="POGO PLANET – Gameplay Szene 1"></div>
+                    <div class="gallery-cell"><img src="../assets/img/Websiteimg2.png"
+                            alt="POGO PLANET – Gameplay Szene 2"></div>
+                    <div class="gallery-cell"><img src="../assets/img/Websiteimg3.png"
+                            alt="POGO PLANET – Gameplay Szene 3"></div>
+                    <div class="gallery-cell"><img src="../assets/img/Websiteimg4.png"
+                            alt="POGO PLANET – Gameplay Szene 4"></div>
+                    <div class="gallery-cell"><img src="../assets/img/Websiteimg5.png"
+                            alt="POGO PLANET – Gameplay Szene 5"></div>
+                    <div class="gallery-cell"><img src="../assets/img/Websiteimg6.png"
+                            alt="POGO PLANET – Gameplay Szene 5"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== CONSOLES ===== -->
+        <section class="section consoles-section" aria-labelledby="console-title">
+            <div class="container center">
+                <h2 id="console-title" class="h2">Kommt bald auf Konsolen ↓</h2>
+
+
+                <div class="cards">
+                    <article class="card">
+                        <span class="tag ps">PlayStation 4/5</span>
+                        <h3>Duales Feedback</h3>
+                        <small>Adaptive Trigger &amp; feines Rumble für perfekte Sprung-Timings.</small>
+                        <img src="../assets/img/ps.png" alt="PlayStation Controller" class="card-img" loading="lazy"
+                            decoding="async">
+                    </article>
+
+                    <article class="card">
+                        <span class="tag xbox">Xbox One / Series</span>
+                        <h3>Smart Delivery</h3>
+                        <small>Optimiert für 120 FPS und superfeines Input-Latency-Tuning.</small>
+                        <img src="../assets/img/xbox.png" alt="Xbox Controller" class="card-img" loading="lazy"
+                            decoding="async">
+                    </article>
+
+                    <article class="card">
+                        <span class="tag switch">Switch 1+2</span>
+                        <h3>On-the-Go</h3>
+                        <small>Handheld-Spaß mit präzisem Gyro-Aiming und lokaler Koop-Action.</small>
+                        <img src="../assets/img/switch.png" alt="Nintendo Switch" class="card-img" loading="lazy"
+                            decoding="async">
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== NEW CONSOLE FEATURES ===== -->
+        <section id="features" class="features" aria-labelledby="features-title">
+            <div class="head">
+                <div class="container">
+                    <div class="grid">
+                        <div>
+                            <h2 id="features-title" class="h2">New Console<br>Features</h2>
+                        </div>
+                        <div>
+                            <p style="opacity:.92">
+                                Die Konsolen-Edition von <strong>POGO PLANET</strong> bringt zahlreiche neue Features –
+                                für noch mehr Flow, Chaos, Kreativität und Koop-Spaß.
+                            </p>
+                            <div class="chips" role="list">
+                                <span class="chip" role="listitem"><span class="dot"></span> 4 Player Coop</span>
+                                <span class="chip" role="listitem"><span class="dot"></span> New Fight Mode</span>
+                                <span class="chip" role="listitem"><span class="dot"></span> 200 Hats</span>
+                                <span class="chip" role="listitem"><span class="dot"></span> New Soundtracks</span>
+                                <span class="chip" role="listitem"><span class="dot"></span> Emotes</span>
+                                <span class="chip" role="listitem"><span class="dot"></span> Editor Mode</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="band band--red">
+                <div class="container inner">
+                    <div class="shot reveal blur-scroll parallax">
+                        <img src="../assets/img/featuresimg1.png" alt="Gameplay Screenshot – Coop"
+                            style="width:100%; height:100%; object-fit:cover; border-radius:inherit;" loading="lazy"
+                            decoding="async">
+                    </div>
+                    <div class="feature-copy reveal blur-scroll">
+                        <h3>4 Player Coop</h3>
+                        <p> Spielt zu viert lokal auf der Couch. Gemeinsam durch die Levels, perfekt für Chaos und
+                            Team-Momente.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="band band--blue">
+                <div class="container inner">
+                    <div class="feature-copy reveal blur-scroll">
+                        <h3>Neuer Fight Mode</h3>
+                        <p>Bis zu vier Spieler gegeneinander. Kurze Runden, direkte Action – wer zuletzt steht, gewinnt.
+                        </p>
+                    </div>
+                    <div class="shot reveal blur-scroll parallax">
+                        <img src="../assets/img/featuresimg2.png" alt="Gameplay Screenshot – Fight Mode"
+                            style="width:100%; height:100%; object-fit:cover; border-radius:inherit;" loading="lazy"
+                            decoding="async">
+                    </div>
+                </div>
+            </div>
+
+            <div class="band band--sand">
+                <div class="container inner">
+                    <div class="shot reveal blur-scroll parallax">
+                        <img src="../assets/img/featuresimg3.png" alt="Gameplay Screenshot – Hats"
+                            style="width:100%; height:100%; object-fit:cover; border-radius:inherit;" loading="lazy"
+                            decoding="async">
+                    </div>
+                    <div class="feature-copy reveal blur-scroll">
+                        <h3>200 neue Hats</h3>
+                        <p>200 neue Hüte zum Freischalten. Mehr Auswahl, mehr Styles, mehr Gründe weiterzuspielen.</p>
+                        <div class="hats-strip" aria-hidden="true"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="band band--yel">
+                <div class="container inner">
+                    <div class="feature-copy reveal blur-scroll">
+                        <h3>Editor Mode</h3>
+                        <p>Baue eigene Maps direkt im Spiel. Erstellen, testen, teilen – und schauen, wer sie schafft.
+                        </p>
+                    </div>
+                    <div class="shot reveal blur-scroll parallax">
+                        <img src="../assets/img/featuresimg4.png" alt="Gameplay Screenshot – Fight Mode"
+                            style="width:100%; height:100%; object-fit:cover; border-radius:inherit;" loading="lazy"
+                            decoding="async">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== COUNTDOWN ===== -->
+        <section class="belt" aria-labelledby="countdown-title">
+            <div class="container center">
+                <h2 id="countdown-title" class="h2" style="color:#fff">Release Countdown</h2>
+
+                <div class="countdown" role="timer" aria-live="polite">
+                    <div class="tick">
+                        <strong id="d">00</strong><span>Tage</span>
+                    </div>
+                    <div class="tick">
+                        <strong id="h">00</strong><span>Std</span>
+                    </div>
+                    <div class="tick">
+                        <strong id="m">00</strong><span>Min</span>
+                    </div>
+                    <div class="tick">
+                        <strong id="s">00</strong><span>Sek</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="section footer">
+        <div class="container">
+            <small>© <span id="year"></span> POGO PLANET – Jonathan Zibler</small>
+            <div style="margin-top:.5rem; font-size:.85rem">
+                <a href="legal.html">Impressum &amp; Datenschutz</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ===== GLOBAL POGO MODE ===== -->
+    <div id="global-pogo-container" style="display: none;">
+        <canvas id="global-pogo-canvas"></canvas>
+        <div id="global-pogo-hud">
+            <div class="hud-content">
+                <span class="hud-badge">GLOBAL POGO MODE ACTIVE</span>
+                <span class="hud-score">Distance: <strong id="global-bounces">0</strong> m</span>
+                <button id="exit-pogo-mode" class="btn btn--secondary btn--small">Exit (ESC)</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="../scripts/main.js" defer></script>
+    <script src="../scripts/global-pogo.js" defer></script>
+</body>
+
+</html>

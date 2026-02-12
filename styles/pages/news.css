@@ -1,0 +1,224 @@
+/* News Page Styles */
+
+:root {
+    --bg: #1c2630;
+    /* Seite Hintergrund */
+    --bg-2: #22303b;
+    /* leichte Variation */
+    --card: #0f1b22;
+    /* Dark Card */
+    --card-2: #0b1419;
+    /* Card Border */
+    --ink: #e7f3f8;
+    --muted: rgba(231, 243, 248, .78);
+    --headline: #ffffff;
+    --accent: #208A74;
+    /* Pogo Green */
+    --accent-2: #48759C;
+    /* Pogo Blue */
+    --shadow: 0 24px 60px rgba(0, 0, 0, .45);
+    --radius: 22px;
+    --gutter: clamp(18px, 4vw, 40px);
+    --maxw: 1120px;
+}
+
+body {
+    background: radial-gradient(1200px 700px at 50% -120px, rgba(72, 117, 156, .22), rgba(0, 0, 0, 0) 62%), radial-gradient(900px 500px at 15% 10%, rgba(32, 138, 116, .16), rgba(0, 0, 0, 0) 60%), linear-gradient(var(--bg), var(--bg-2));
+    color: var(--ink);
+}
+
+.container {
+    width: min(var(--maxw), 100% - 2rem);
+}
+
+/* Topbar override */
+header.hero {
+    padding: clamp(1.6rem, 5vw, 2.6rem) 0 clamp(1.5rem, 5vw, 2.6rem);
+    position: relative;
+    overflow: hidden;
+    background: transparent;
+    /* Remove main.css bg */
+}
+
+.topbar.is-sticky {
+    backdrop-filter: saturate(140%) blur(12px);
+    background: rgba(15, 27, 34, .65);
+    box-shadow: 0 8px 26px rgba(0, 0, 0, .34);
+    border-bottom: 1px solid rgba(255, 255, 255, .10);
+}
+
+.brand-mark {
+    border-radius: 12px;
+    background: var(--accent-2);
+    box-shadow: 0 10px 18px rgba(0, 0, 0, .35);
+}
+
+.btn--ghost {
+    background: transparent;
+    border-color: rgba(255, 255, 255, .28);
+    color: #fff;
+}
+
+.btn--ghost:hover {
+    transform: translateY(-2px);
+    background: rgba(255, 255, 255, .06);
+}
+
+.btn--secondary {
+    background: #fff;
+    color: #0b1419;
+}
+
+.btn--secondary:hover {
+    transform: translateY(-2px);
+}
+
+/* Hero Title Override */
+.hero-title {
+    margin-top: 2rem;
+}
+
+.hero-title h1 {
+    font-family: "Bungee", system-ui;
+    font-weight: 400;
+    margin: 0;
+    font-size: clamp(2.2rem, 5vw, 4.2rem);
+    letter-spacing: .04em;
+    color: #ffffff;
+    text-transform: uppercase;
+}
+
+.hero-title p {
+    margin: .9rem auto 0;
+    max-width: 66ch;
+    color: rgba(255, 255, 255, .82);
+    font-size: clamp(1rem, 2.1vw, 1.1rem);
+    line-height: 1.6;
+}
+
+/* News List */
+main {
+    padding: 0 0 clamp(3rem, 7vw, 5rem);
+}
+
+.news-list {
+    display: grid;
+    gap: 1.4rem;
+    margin-top: clamp(1.8rem, 5vw, 2.8rem);
+}
+
+.news-card {
+    position: relative;
+    background: linear-gradient(180deg, rgba(255, 255, 255, .03), rgba(255, 255, 255, .015));
+    border: 2px solid rgba(255, 255, 255, .08);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    overflow: hidden;
+    transition: .2s ease transform;
+}
+
+.news-card:hover {
+    transform: translateY(-3px);
+}
+
+/* kleine farbige Linie wie Highlight */
+.news-card::before {
+    content: "";
+    position: absolute;
+    inset: 0 auto auto 0;
+    width: 100%;
+    height: 6px;
+    background: linear-gradient(90deg, var(--accent), var(--accent-2));
+    opacity: .95;
+}
+
+.news-inner {
+    padding: clamp(1.2rem, 3vw, 1.8rem);
+    display: grid;
+    gap: 1rem;
+}
+
+.news-meta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: .75rem;
+    margin-bottom: .15rem;
+}
+
+.version {
+    font-weight: 900;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    font-size: .78rem;
+    color: rgba(255, 255, 255, .62);
+}
+
+.date {
+    font-weight: 900;
+    font-size: .85rem;
+    color: rgba(255, 255, 255, .50);
+}
+
+.news-title {
+    font-family: "Bungee", system-ui;
+    font-weight: 400;
+    margin: 0;
+    color: var(--headline);
+    font-size: clamp(1.4rem, 3vw, 2.05rem);
+    letter-spacing: .02em;
+    line-height: 1.1;
+    text-transform: uppercase;
+}
+
+.news-text {
+    margin: 0;
+    color: var(--muted);
+    max-width: 100%;
+    font-size: 1.02rem;
+}
+
+.news-media {
+    border-radius: 18px;
+    overflow: hidden;
+    border: 2px solid rgba(255, 255, 255, .08);
+    box-shadow: 0 16px 34px rgba(0, 0, 0, .35);
+    background: #0b1419;
+}
+
+.news-media img {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: cover;
+    aspect-ratio: 16/7;
+}
+
+/* Footer override */
+footer {
+    text-align: center;
+    opacity: .85;
+    padding: 2rem 0 2.2rem;
+}
+
+footer small {
+    color: rgba(255, 255, 255, .70);
+}
+
+/* Responsive */
+@media (max-width: 640px) {
+    nav {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .news-meta {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .news-media img {
+        aspect-ratio: 16/10;
+    }
+}

@@ -1,0 +1,29 @@
+/* Footer */
+
+footer.footer {
+    padding: clamp(1.2rem, 3vw, 1.6rem) 0 clamp(2rem, 5vw, 2.6rem);
+    font-size: clamp(.82rem, 2vw, .9rem);
+    color: #f3f7fa;
+    text-align: center;
+    border-top: 1px solid rgba(0, 0, 0, .15);
+    background: rgba(0, 0, 0, .18);
+    backdrop-filter: blur(6px);
+    border-bottom: 0;
+}
+
+footer.footer a {
+    color: #fff;
+    font-weight: 700;
+}
+
+.footer-stack {
+    display: grid;
+    gap: .9rem;
+    justify-items: center;
+}
+
+.footer-wave {
+    height: 120px;
+    background: linear-gradient(to top, rgba(0, 0, 0, .2), rgba(0, 0, 0, 0));
+    mask: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none"><path d="M1200 0v60c-180 40-300 50-420 44C605 90 520 44 360 54 220 64 120 100 0 120V0Z" fill="white"/></svg>') no-repeat 50% 100%/100% 100%;
+}
