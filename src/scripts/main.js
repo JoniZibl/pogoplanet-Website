@@ -30,13 +30,7 @@ document.documentElement.classList.replace('no-js', 'js');
         const isActive = nav.classList.toggle('is-active');
         toggle.classList.toggle('is-active');
         toggle.setAttribute('aria-expanded', isActive);
-        if (isActive) {
-            document.body.style.overflow = 'hidden';
-            nav.style.transform = 'translateX(0)';
-        } else {
-            document.body.style.overflow = '';
-            nav.style.transform = '';
-        }
+        document.body.style.overflow = isActive ? 'hidden' : '';
     });
 
     // Close menu when clicking a link
@@ -46,7 +40,6 @@ document.documentElement.classList.replace('no-js', 'js');
             toggle.classList.remove('is-active');
             toggle.setAttribute('aria-expanded', 'false');
             document.body.style.overflow = '';
-            nav.style.transform = '';
         });
     });
 })();
